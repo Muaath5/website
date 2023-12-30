@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+markdown: GFM
+site:
+  title: 'Muaath Website'
+  description: 'Portfolio + Blog'
