@@ -12,6 +12,6 @@ I'm Muaath Alqarni, student based in Saudi Arabia who is interested in technolog
 - **I want to improve in:** UI, data science
 - **I want to start learning:** AI, UX, Video editing, Logo making
 
-You can check <a href="/blog/" class="btn btn-primary">my blog</a>, I write there sometimes.
+You can check <a href="/blog/">my blog</a>, I write there sometimes.
 
-Here is also my <a href="/portfolio/" class="btn btn-primary">Portfolio</a>.
+Here is also my <a href="/portfolio/">Portfolio</a>.
