@@ -46,7 +46,7 @@ Go to:
 AWS Console > EC2 > Instances > {INSTANCE_NAME} > Security > Security groups > Edit inbound rules > Add port 443 for Ipv6, Ipv4
 
 ### Apache configuration
-First, add your certificate files to some folder (I suggest `/var/ssl/`), then:
+First, add your certificate files to some folder (I suggest `/ssl` in project root directory), then:
 
 ```bash
 cd /etc/httpd/conf.d/elasticbeanstalk && sudo nano ssl.conf
@@ -67,6 +67,8 @@ Check if it's correct then restart:
 ```bash
 sudo apachectl configtest && sudo apachectl restart
 ```
+
+**Note:** This will be removed after environment restart. If you want it to be saved always, use `.ebextensions` configuration files.
 
 ## Auto fetching from GitHub (Not working)
 1. Create a pipeline

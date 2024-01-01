@@ -4,6 +4,14 @@ description: 'Portfolio + Blog'
 lang: en
 ---
 
-Check [my portfolio](/portfolio).
+## Who am I?
 
-Also [my blog](/blog).
+I'm Muaath Alqarni, student based in Saudi Arabia who is interested in technology.
+
+- **I'm strong in:** web development, problem solving
+- **I want to improve in:** UI, data science
+- **I want to start learning:** AI, UX, Video editing, Logo making
+
+You can check <a href="/blog/" class="btn btn-primary">my blog</a>, I write there sometimes.
+
+Here is also my <a href="/portfolio/" class="btn btn-primary">Portfolio</a>.

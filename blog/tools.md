@@ -1,0 +1,34 @@
+---
+title: 'Developer tools'
+description: 'I use these tools'
+---
+## Browser
+Firefox
+
+## Other
+- Docker
+- Git + GitHub Desktop
+- Postman
+
+## System
+Windows is the most used, but for work I use Ubuntu in WSL 2.
+
+Also I use Kali because of some programs their.
+
+## IDE
+- C#: Visual Studio 2022
+- PHP, JS, Python, HTML, CSS: Visual Studio Code, notepad++, nodepad.exe
+- C++: Visual Studio 2022, Codeblocks
+
+## Videos
+I like to get everything done in OBS, no need for further editing except cuts.
+
+I use Clipchamp, because I don't need advanced editing, if I needed that I'd use Premeir or After Effects
+
+## Communication
+- Telegram Desktop - Greatest app, a lot of features, easy automation
+- Discord (Lightmode) - A lot of communities
+- Whatsapp Desktop - Standard thing
+
+## Documents
+Usually Google (Docs/Sheets/Slides)
