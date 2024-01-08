@@ -1,0 +1,17 @@
+---
+title: 'Blogs list'
+description: 'Random blogs'
+lang: en
+permalink: /blog/
+---
+
+<div class="row">
+  {% for blog in site.posts %}
+  <div class="col-lg-3 col-md-4 col-sm-12">
+    {% include blogbox.html %}
+  </div>
+  {% endfor %}
+</div>
+
+## Athka blogs (National Olympiad for Programming)
+Checkout [Teqaniaat blog](https://teqaniaat.github.io/Teqaniaat/athka/)

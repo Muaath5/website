@@ -1,0 +1,24 @@
+---
+title: 'Muaath5 Website'
+description: 'Personal website'
+lang: en
+---
+<div class="row">
+    <h1>{{ page.title }}</h1>
+    <h3>Checkout last blogs, or <a href="/blog/">the whole blog</a></h3>
+</div>
+<div class="row">
+    <div class="col">
+        {% include blogbox.html blog=site.posts[0] %}
+    </div>
+    <div class="col">
+        {% include blogbox.html blog=site.posts[1]] %}
+    </div>
+    <div class="col">
+        {% include blogbox.html blog=site.posts[2] %}
+    </div>
+</div>
+
+- **I'm strong in:** web development, problem solving
+- **I want to improve in:** UI, data science
+- **I want to start learning:** AI, UX, Video editing, Logo making
