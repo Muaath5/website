@@ -1,4 +1,11 @@
+---
+title: 'CSES Automation in Python'
+description: 'Customizable script'
+lang: en
+tags: [library, python]
+---
 # CSES Automation in Python
+**Version: 2**
 I just created a [Python script](/scripts/cses.py) that can:
 - Login
 - Get all tasks from problemset
@@ -13,6 +20,3 @@ It can be customizable in a lot of ways, the future updates will make it easier 
 ## Requirements
 - BeautifulSoap
 - requests
-
-
-**Version: 1**

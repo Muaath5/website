@@ -2,6 +2,8 @@
 title: 'Cards Trick'
 description: 'A trick between 2 magicians'
 lang: en
+tags: [cp, editorial]
+usemathjax: true
 ---
 This is a communicational technique, in pocker cards (Baloot).
 

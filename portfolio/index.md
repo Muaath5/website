@@ -14,30 +14,21 @@ lang: en
 ## Technical Skills
 - **Tools:** Git + Github, Docker
 - **Web:** PHP + Laravel
+- **Console apps:** C#, C++
 - **Systems:** Linux, WSL, Windows, Ubuntu, Alpine, AWS Servers
 - **Databases:** MySQL, PostgreSQL
-- **CSS:** Bootstrap
+- **UI:** CSS, Javascript, Bootstrap
 - **Other:**
-  - Automation using Python
-  - Web scraping in python
   - Algorithms & Data Structures
   - REST API
+  - Automation using Python
+  - Web scraping in python
 
 ## Soft Skills
 - Communication
 - Writing reports
 - Problem solving
 - Project management
-
-## Languages
-| Language      | Use/Frameworks/Libraries          | Years |
-|---------------|-----------------------------------|-------|
-| C#            | .NET, Winforms, Telegram Userbots | 5y    |
-| PHP           | Laravel, Telegram Bots, APIs      | 4y    |
-| Javascript    | Browser things, UI                | 4y    |
-| C++           | Console apps                      | 3y    |
-| Python        | Automation, Scrapping, misc.      | 3y    |
-
 
 ## Projects
 - [/AutoReplyUserBot](https://github.com/Muaath5/AutoReplyUserBot) | Auto-reply Telegram userbot in C# using TDLib

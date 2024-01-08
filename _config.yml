@@ -1,5 +1,10 @@
+name: 'Muaath5 Website'
+title: 'Muaath5 Website'
+description: 'Portfolio + Blog'
+permalink: /blog/:title
+
 theme: jekyll-theme-cayman
-markdown: GFM
-site:
-  title: 'Muaath Website'
-  description: 'Portfolio + Blog'
+
+exclude:
+  - Gemfile
+  - Gemfile.lock

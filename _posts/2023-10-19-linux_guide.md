@@ -1,3 +1,9 @@
+---
+title: 'Linux Basic Guide'
+description: 'Commands, Concepts, Programs'
+lang: en
+tags: [guide]
+---
 # Linux Commands Guide (Ubuntu/Kali)
 For more understanding, try it yourself.
 

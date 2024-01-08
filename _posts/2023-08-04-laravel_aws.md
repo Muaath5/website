@@ -1,4 +1,9 @@
-# Deploy Laravel on AWS Elastic Beanstalk
+---
+title: 'Laravel on AWS'
+description: 'Using Elastic Beanstalk'
+lang: en
+tags: [web, hosting]
+---
 ## Notes
 - In this tutorial, I will use Ubuntu system always
 - If it was useful, give it a star
@@ -7,12 +12,12 @@
 1. Create AWS account
 2. Create EC2 key pair (you will use it to login to console)
 3. Create IAM Instance Profile with permissions
-    - AWSElasticBeanstalkWebTier
-    - AWSElasticBeanstalkWorkerTier
-    - AWSElasticBeanstalkMulticontainerDocker
-    - AWSElasticBeanstalkEnhancedHealth
-    - AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy
-    - AWSElasticBeanstalkRoleWorkerTier
+    - `AWSElasticBeanstalkWebTier`
+    - `AWSElasticBeanstalkWorkerTier`
+    - `AWSElasticBeanstalkMulticontainerDocker`
+    - `AWSElasticBeanstalkEnhancedHealth`
+    - `AWSElasticBeanstalkManagedUpdatesCustomerRolePolicy`
+    - `AWSElasticBeanstalkRoleWorkerTier`
 5. Create Elastic Beanstalk application
 
 | Setting          | Value     |
@@ -73,7 +78,7 @@ sudo apachectl configtest && sudo apachectl restart
 ## Auto fetching from GitHub (Not working)
 1. Create a pipeline
 2. Connect it to your Github account
-3. Create CodeBuild, and make everything as default
+3. Create CodeBuild,  and make everything as default
 4. Select Ubuntu as System
 
 And it requires that you have `buildspecs.yml` file on the root, here is a suggested config:
