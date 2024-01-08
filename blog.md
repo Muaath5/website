@@ -2,7 +2,6 @@
 title: 'Blog'
 description: 'Random blogs'
 lang: en
-permalink: /blog/
 ---
 ## Blogs
 <ul>
