@@ -1,10 +1,10 @@
 ---
-title: 'Blog'
+title: 'Blogs list'
 description: 'Random blogs'
 lang: en
 permalink: /blog/
 ---
-## Blogs
+
 <ul>
 {% for post in site.posts %}
     <li>
