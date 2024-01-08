@@ -9,13 +9,16 @@ lang: en
 </div>
 <div class="row">
     <div class="col">
-        {% include blogbox.html blog=site.posts[0] %}
+        {% assign blog=site.posts[0] %}
+        {% include blogbox.html %}
     </div>
     <div class="col">
-        {% include blogbox.html blog=site.posts[1]] %}
+        {% assign blog=site.posts[1] %}
+        {% include blogbox.html %}
     </div>
     <div class="col">
-        {% include blogbox.html blog=site.posts[2] %}
+        {% assign blog=site.posts[2] %}
+        {% include blogbox.html %}
     </div>
 </div>
 
