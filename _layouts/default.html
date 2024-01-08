@@ -1,57 +1,53 @@
 ---
 layout: base
 ---
-<div id="app">
-    <nav class="navbar navbar-expand-md shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                Muaath's website
+<nav class="navbar navbar-expand-md shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="/">Muaath's website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav me-auto">
+                <a class="nav-link" href="/about">About</a>
+                <!-- <a class="nav-link" href="/services">Services</a> -->
+                <!-- <a class="nav-link" href="/projects">Projects</a> -->
+                <a class="nav-link" href="/blog">Blog</a>
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ms-auto">
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="py-4 flex-shrink-0">
+    <div class="container">
+        {{ content }}
+    </div>
+</main>
+<footer class="w-100 mt-auto p-4 bg-light">
+    <div class="row my-2">
+        <div class="col text-center">
+            <a href="https://t.me/Muaath_Alqarni" width="7px" height="7px" class="btn btn-secondary p-1">
+                <i class="bi bi-telegram text-white p-1" style="border-radius: 5px;"></i>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-                    <a class="nav-link" href="/about">About</a>
-                    <!-- <a class="nav-link" href="/services">Services</a> -->
-                    <!-- <a class="nav-link" href="/projects">Projects</a> -->
-                    <a class="nav-link" href="/blog">Blog</a>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                    
-                </ul>
-            </div>
+            <a href="mailto:muaath.alqarni@hotmail.com" width="7px" height="7px" class="btn btn-secondary p-1">
+                <i class="bi bi-envelope-fill text-white p-1" style="border-radius: 5px;"></i>
+            </a>
+            <a href="https://x.com/Muaath_dev" width="7px" height="7px" class="btn btn-secondary p-1">
+                <i class="bi bi-twitter-x text-white p-1" style="border-radius: 5px;"></i>
+            </a>
+            <a href="https://github.com/Muaath5" width="7px" height="7px" class="btn btn-secondary p-1">
+                <i class="bi bi-github text-white p-1" style="border-radius: 5px;"></i>
+            </a>
         </div>
-    </nav>
-    <main class="py-4 flex-shrink-0">
-        <div class="container">
-            {{ content }}
-        </div>
-    </main>
-    <footer class="w-100 mt-auto p-4 bg-light">
-        <div class="row my-2">
-            <div class="col text-center">
-                <a href="https://t.me/Muaath_Alqarni" width="7px" height="7px" class="btn btn-secondary p-1">
-                    <i class="bi bi-telegram text-white p-1" style="border-radius: 5px;"></i>
-                </a>
-                <a href="mailto:muaath.alqarni@hotmail.com" width="7px" height="7px" class="btn btn-secondary p-1">
-                    <i class="bi bi-envelope-fill text-white p-1" style="border-radius: 5px;"></i>
-                </a>
-                <a href="https://x.com/Muaath_dev" width="7px" height="7px" class="btn btn-secondary p-1">
-                    <i class="bi bi-twitter-x text-white p-1" style="border-radius: 5px;"></i>
-                </a>
-                <a href="https://github.com/Muaath5" width="7px" height="7px" class="btn btn-secondary p-1">
-                    <i class="bi bi-github text-white p-1" style="border-radius: 5px;"></i>
-                </a>
-            </div>
-        </div>
-        <div class="row text-center">
-            <h6 class="text-secondary">Hosted on Github Pages</h6>
-            <h6 class="text-secondary">Built using Jekyll</h6>
-        </div>
-    </footer>
-</div>
+    </div>
+    <div class="row text-center">
+        <h6 class="text-secondary">Hosted on Github Pages</h6>
+        <h6 class="text-secondary">Built using Jekyll</h6>
+    </div>
+</footer>

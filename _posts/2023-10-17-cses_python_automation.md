@@ -1,10 +1,9 @@
 ---
 title: 'CSES Automation in Python'
-description: 'Customizable script'
+description: 'Customizable script for controlling a CSES account'
 lang: en
 tags: [library, python]
 ---
-# CSES Automation in Python
 **Version: 2**
 I just created a [Python script](/scripts/cses.py) that can:
 - Login

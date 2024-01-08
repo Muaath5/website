@@ -1,12 +1,9 @@
 ---
-title: 'Linux Basic Guide'
+title: 'Linux Basic Guide (Ubuntu/Kali)'
 description: 'Commands, Concepts, Programs'
 lang: en
 tags: [guide]
 ---
-# Linux Commands Guide (Ubuntu/Kali)
-For more understanding, try it yourself.
-
 ## Installing WSL
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart

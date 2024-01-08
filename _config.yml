@@ -3,6 +3,7 @@ title: 'Muaath5 Website'
 description: 'Portfolio + Blog'
 permalink: /blog/:title
 
+markdown: GFM
 theme: jekyll-theme-cayman
 
 exclude:
