@@ -16,8 +16,8 @@ layout: base
 <style>
     main
     {
-        padding-left: 60px;
-        padding-right: 60px;
+        padding-left: 80px;
+        padding-right: 80px;
     }
     main#content > div
     {
@@ -26,21 +26,23 @@ layout: base
 </style>
 <main id="content" data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" style="height: 100vh; margin-top: .5rem; overflow: auto;" class="p-3 py-5 rounded-2 container" tabindex="0">
     <div class="row" id="about">
-        <h3>About me</h3>
+        <h2>About me</h2>
         <div class="col-4">
             <!-- Profile photo -->
             <img src="https://avatars.githubusercontent.com/u/60256639?v=4" class="img-thumbnail" width="260" height="260" alt="Profile photo">
         </div>
         <div class="col-8">
-            <h4>
-                I'm Muaath Alqarni, Mawhibastudent based in Saudi Arabia who is interested in technology in general.
-                I like competitive programming, web developement (mainly backend).
-                I like helping the Saudi community growing to achieve Saudi Vision 2030
-            </h4>
+            <h5>
+                <p>I'm Muaath Alqarni, Mawhiba student based in Saudi Arabia who is interested in technology in general.</p>
+
+                <p>I like competitive programming, web developement (mainly backend).</p>
+
+                <p>I like helping the Saudi community growing to achieve Saudi Vision 2030</p>
+            </h5>
         </div>
     </div>
     <hr>
-    <div class="row" id="skills">
+    <div class="row" height="500px" id="skills">
         <div class="col-6">
             <h3>Soft skills</h3>
             <ul>
@@ -61,35 +63,41 @@ layout: base
         </div>
     </div>
     <hr>
-    <div class="row" height="300px" id="experience">
-        <h3>Experience</h3>
-        <ul>
-            <li>@tginfo</li>
-            <li>SCPComunity</li>
-            <li>Teqaniaat</li>
-            <li>MRB3</li>
-        </ul>
+    <div class="row" height="500px" id="experience">
+        <div class="col">
+            <h3>Experience</h3>
+            <ul>
+                <li>@tginfo</li>
+                <li>SCPComunity</li>
+                <li>Teqaniaat</li>
+                <li>MRB3</li>
+            </ul>
+        </div>
     </div>
     <hr>
     <div class="row" id="projects">
         <h4>Projects List</h4>
-        <div class="col-6 card m-3">
-            <div class="card-body">
-                <h5 class="card-title">Saudi Online Judge - SOJ</h5>
-                <p class="card-text">First Saudi and Arabic independent online judge</p>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a href="https://github.com/SaudiOnlineJudge" type="button" class="btn btn-outline-primary"><i class="bi-github"></i></a>
-                    <a href="https://t.me/SaudiOnlineJudge" type="button" class="btn btn-outline-primary"><i class="bi-telegram"></i></a>
-                    <a href="https://x.com/SaudiJudge" type="button" class="btn btn-outline-primary"><i class="bi-x"></i></a>
+        <div class="col-6">
+            <div class="card m-3">
+                <div class="card-body">
+                    <h5 class="card-title">Saudi Online Judge - SOJ</h5>
+                    <p class="card-text">First Saudi and Arabic independent online judge</p>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a href="https://github.com/SaudiOnlineJudge" type="button" class="btn btn-outline-primary"><i class="bi-github"></i></a>
+                        <a href="https://t.me/SaudiOnlineJudge" type="button" class="btn btn-outline-primary"><i class="bi-telegram"></i></a>
+                        <a href="https://x.com/SaudiJudge" type="button" class="btn btn-outline-primary"><i class="bi-x"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-6 card m-3">
-            <div class="card-body">
-                <h5 class="card-title">Personal Blog</h5>
-                <p class="card-text">Random blogs in various topics</p>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a href="/blog" type="button" class="btn btn-outline-primary"><i class="bi-link-45deg"></i></a>
+        <div class="col-6">
+            <div class="card m-3">
+                <div class="card-body">
+                    <h5 class="card-title">Personal Blog</h5>
+                    <p class="card-text">Random blogs in various topics</p>
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a href="/blog" type="button" class="btn btn-outline-primary"><i class="bi-link-45deg"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

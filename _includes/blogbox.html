@@ -6,7 +6,7 @@
             <small class="text-body-secondary">
             {{ blog.date | date: "%Y/%m/%d" }}
             {% if blog.tags %}
-                , <span class="badge bg-secondary">{{ blog.tags | join: '</span><span class="badge bg-secondary">' }}</span></small>
+                , <span class="badge bg-secondary">{{ blog.tags | join: '</span><span class="m-1 badge bg-secondary">' }}</span></small>
             {% endif %}
             </small>
         </p>
