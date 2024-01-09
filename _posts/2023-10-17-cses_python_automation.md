@@ -1,6 +1,6 @@
 ---
 title: 'CSES Automation in Python'
-description: 'Customizable script for controlling a CSES account'
+description: 'Customizable python script for controlling a CSES account'
 lang: en
 tags: [library, python]
 ---

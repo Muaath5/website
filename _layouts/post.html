@@ -8,7 +8,7 @@ layout: default
         <h6>{{ page.date | format: "%Y/%m/%d" }}</h6>
         <div>
             {% if page.tags %}
-            <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+            <small>tags: <span class="badge bg-secondary">{{ page.tags | join: "</span><span class="badge bg-secondary">" }}</span></small>
             {% endif %}
         </div>
     </div>
