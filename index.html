@@ -13,22 +13,47 @@ layout: base
         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
     </ul>
 </nav>
-
-<main data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" style="height: 100vh; margin-top: .5rem; overflow: auto;" class="bg-body-tertiary p-3 py-5 rounded-2" tabindex="0">
-    <div id="about">
+<style>
+    main#content > div
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+<main id="content" data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" style="height: 100vh; margin-top: .5rem; overflow: auto;" class="p-3 py-5 rounded-2" tabindex="0">
+    <div class="row" id="about">
         <h3>About me</h3>
-        <h5>I'm Muaath Alqarni, Mawhiba Student, member of Saudi Informatics Team.</h5>
+        <div class="col-4">
+            <!-- Profile photo -->
+        </div>
+        <div class="col-8">
+            <h4>
+                I'm Muaath Alqarni, Mawhiba Student, member of Saudi Informatics Team. Interested in backend-stack developement.
+            </h4>
+        </div>
     </div>
-    <div id="skills">
-        <h3>Skills</h3>
-        <ul>
-            <li>Web developement</li>
-            <li>Algorithms & Data Structures</li>
-            <li>Data science</li>
-            <li>Automation</li>
-        </ul>
+    <div class="row" id="skills">
+        <div class="col-6">
+            <h3>Soft skills</h3>
+            <ul>
+                <li>Project management</li>
+                <li>Communication</li>
+                <li>Problem solving</li>
+                <li>Team work</li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <h3>Technical skills</h3>
+            <ul>
+                <li>Web developement</li>
+                <li>Algorithms & Data Structures</li>
+                <li>Data science</li>
+                <li>Automation</li>
+            </ul>
+        </div>
     </div>
-    <div id="experience">
+    <div class="row" id="experience">
+        <h3>Experience</h3>
         <ul>
             <li>@tginfo</li>
             <li>SCPComunity</li>
@@ -36,9 +61,9 @@ layout: base
             <li>MRB3</li>
         </ul>
     </div>
-    <div id="projects">
+    <div class="row" id="projects">
         <h4>Projects List</h4>
-        <div class="card w-100 mb-3">
+        <div class="col-6 card w-100 mb-3">
             <div class="card-body">
                 <h5 class="card-title">Saudi Online Judge - SOJ</h5>
                 <p class="card-text">First Saudi and Arabic independent online judge</p>
@@ -49,7 +74,7 @@ layout: base
                 </div>
             </div>
         </div>
-        <div class="card w-100 mb-3">
+        <div class="col-6 card w-100 mb-3">
             <div class="card-body">
                 <h5 class="card-title">Personal Blog</h5>
                 <p class="card-text">Random blogs in various topics</p>
@@ -57,6 +82,6 @@ layout: base
                     <a href="/blog" type="button" class="btn btn-outline-primary"><i class="bi-link-45deg"></i></a>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 </main>
