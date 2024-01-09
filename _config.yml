@@ -1,7 +1,7 @@
 name: 'Muaath5 Website'
 title: 'Muaath5 Website'
 description: 'Portfolio + Blog'
-permalink: /post/:title
+permalink: /blog/:title
 
 markdown: GFM
 theme: jekyll-theme-cayman
