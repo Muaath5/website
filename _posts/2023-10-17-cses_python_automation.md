@@ -1,8 +1,8 @@
 ---
-title: 'CSES Automation in Python'
-description: 'Customizable python script for controlling a CSES account'
+title: "CSES Automation in Python"
+description: "Customizable python script for controlling a CSES account"
 lang: en
-tags: [library, python]
+tags: ["library", "python"]
 ---
 **Version: 2**
 I just created a [Python script](/scripts/cses.py) that can:

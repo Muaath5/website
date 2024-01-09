@@ -1,8 +1,8 @@
 ---
-title: 'Linux Basic Guide (Ubuntu/Kali)'
-description: 'Commands, concepts, and programs tutorial'
+title: "Linux Basic Guide (Ubuntu/Kali)"
+description: "Commands, concepts, and programs tutorial"
 lang: en
-tags: [tutorial, linux]
+tags: ["tutorial", "linux"]
 ---
 ## Installing WSL
 ```
