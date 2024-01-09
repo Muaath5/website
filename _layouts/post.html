@@ -4,16 +4,16 @@ layout: default
 <div class="row">
     <div class="col">
         <h1>{{ page.title }}</h1>
-        <figure style="border-radius: 10px; border-left: 2px lightgray solid;" class="note note-secondary p-4">
+        <figure style="border-radius: 10px; border-left: 2px rgb(179, 179, 179) solid;" class="note note-secondary p-4">
             <blockquote class="blockquote">
                 <p class="pb-2">
                     {{ page.description }}
                 </p>
             </blockquote>
             <figcaption class="blockquote-footer mb-0">
-                {{ page.date | date: "%Y/%m/%d" }},
+                {{ page.date | date: "%Y/%m/%d" }}
                 {% if page.tags %}
-                <span class="badge bg-secondary">{{ page.tags | join: "</span><span class="badge bg-secondary">" }}</span></small>
+                , <span class="badge bg-secondary">{{ page.tags | join: "</span><span class="badge bg-secondary">" }}</span></small>
                 {% endif %}
             </figcaption>
         </figure>

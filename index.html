@@ -1,24 +1,62 @@
 ---
-title: 'Muaath5 Website'
-description: 'Personal website'
+title: 'Muaath5 Portfolio'
+description: 'About, Skills, Experience, and Projects'
 lang: en
-layout: default
+layout: base
 ---
-<div class="row">
-    <h1>{{ page.title }}</h1>
-    <h3>Checkout last blogs, or <a href="/blog/">the whole blog</a></h3>
-</div>
-<div class="row">
-    <div class="col">
-        {% assign blog=site.posts[0] %}
-        {% include blogbox.html %}
+<nav id="main-navbar" class="navbar bg-body-tertiary px-3 mb-3">
+    <a class="navbar-brand" href="#">Muaath Alqarni</a>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+    </ul>
+</nav>
+
+<main data-bs-spy="scroll" data-bs-target="#main-navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" style="height: 100vh; margin-top: .5rem; overflow: auto;" class="bg-body-tertiary p-3 py-5 rounded-2" tabindex="0">
+    <div id="about">
+        <h3>About me</h3>
+        <h5>I'm Muaath Alqarni, Mawhiba Student, member of Saudi Informatics Team.</h5>
     </div>
-    <div class="col">
-        {% assign blog=site.posts[1] %}
-        {% include blogbox.html %}
+    <div id="skills">
+        <h3>Skills</h3>
+        <ul>
+            <li>Web developement</li>
+            <li>Algorithms & Data Structures</li>
+            <li>Data science</li>
+            <li>Automation</li>
+        </ul>
     </div>
-    <div class="col">
-        {% assign blog=site.posts[2] %}
-        {% include blogbox.html %}
+    <div id="experience">
+        <ul>
+            <li>@tginfo</li>
+            <li>SCPComunity</li>
+            <li>Teqaniaat</li>
+            <li>MRB3</li>
+        </ul>
     </div>
-</div>
+    <div id="projects">
+        <h4>Projects List</h4>
+        <div class="card w-100 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Saudi Online Judge - SOJ</h5>
+                <p class="card-text">First Saudi and Arabic independent online judge</p>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href="#" type="button" class="btn btn-outline-primary"><i class="bi-github"></i></a>
+                    <a href="#" type="button" class="btn btn-outline-primary"><i class="bi-telegram"></i></a>
+                    <a href="#" type="button" class="btn btn-outline-primary"><i class="bi-x"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card w-100 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Personal Blog</h5>
+                <p class="card-text">Random blogs in various topics</p>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a href="/blog" type="button" class="btn btn-outline-primary"><i class="bi-link-45deg"></i></a>
+                </div>
+            </div>
+        </div>          
+    </div>
+</main>
