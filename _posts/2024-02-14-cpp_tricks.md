@@ -1,11 +1,10 @@
 ---
 title: "C++ Tricks"
-description: "Hidden features that could be useful for optimizing speed, memory, and code length!"
+description: "Hidden features that could be useful in optimizing time, memory, and code length!"
 tags: ["c++", "cp"]
 lang: en
 usemathjax: false
 ---
-
 ## Compiler Optimizations & Target
 Pragmas is used for speeding up some codes, sometimes it gets a submission from TLE to AC.
 
@@ -116,3 +115,6 @@ You can use `int a['  '];`, just to let you know :)
 ## Extra
 - Usually pointers & binary operations are pretty fast
 - You can use `#import` instead of `#include`
+
+
+<script>hljs.highlightAll();</script>
