@@ -115,6 +115,3 @@ You can use `int a['  '];`, just to let you know :)
 ## Extra
 - Usually pointers & binary operations are pretty fast
 - You can use `#import` instead of `#include`
-
-
-<script>hljs.highlightAll();</script>
