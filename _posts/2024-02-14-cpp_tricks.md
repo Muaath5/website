@@ -1,13 +1,12 @@
 ---
-# Template for writing blogs
 title: "C++ Tricks"
-description: "Hidden features that could be useful"
+description: "Hidden features that could be useful for optimizing speed, memory, and code length!"
 tags: ["c++", "cp"]
 lang: en
-layout: blog
 usemathjax: false
 ---
-## Speed
+
+## Compiler Optimizations & Target
 Pragmas is used for speeding up some codes, sometimes it gets a submission from TLE to AC.
 
 The default optimization in most online judges is `O2`.
