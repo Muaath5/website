@@ -1,7 +1,12 @@
-name: 'Muaath5 Website'
-title: 'Muaath5 Website'
-description: 'Portfolio + Blog'
+name: 'Muaath website'
+title: 'Muaath website'
+description: 'Personal website'
 permalink: /blog/:title
+url: https://muaath.dev
+
+twitter:
+  username: Muaath_dev
+  card: summary
 
 markdown: GFM
 theme: jekyll-theme-cayman
