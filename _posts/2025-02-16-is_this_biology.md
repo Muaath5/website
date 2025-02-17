@@ -1,9 +1,9 @@
 ---
-title: "Is this biology"
-description: "A practice problem for Saudi Biology Olympiad "
+title: "Is this biology?"
+description: "A practice problem for Saudi Biology Olympiad"
 tags: ["c++", "cp"]
 lang: en
-usemathjax: false
+usemathjax: true
 ---
 ## The problem
 A scientist has isolated five different peptides (1 to 5) containing five amino acids (named A, B, C, D, E). He determined the mass and the sequence of each peptide. The data which he obtained is shown on the table below
