@@ -10,11 +10,11 @@ A scientist has isolated five different peptides (1 to 5) containing five amino 
 
 | Peptide | Amino Acids Sequence | Mass (Da) |
 |---------|---------------------|-----------|
-| 1       | BCDACCDEDCB        | 966       |
-| 2       | ABBCAEEDECB        | 1099      |
-| 3       | BACDAEAECA         | 1357      |
-| 4       | CACADBACAEB        | 1279      |
-| 5       | EDDCABBCCEE        | 1014      |
+| 1       | BCDACCDEDCB         | 966       |
+| 2       | ABBCAEEDECB         | 1099      |
+| 3       | BACDAEAEECA         | 1357      |
+| 4       | CACADBACAEB         | 1279      |
+| 5       | EDDCABBCCEE         | 1014      |
 
 The mass of individual amino acids are shown in the table below
 
@@ -42,5 +42,55 @@ D. Amino acid named B is glycine
 
 ## Shorter mathematical simplification
 
-BCDACCDEDCB
+Given these equations:
+- $A + 2B + 4C + 3D + E = 1046$
+- $2A + 3B + 2C + D + 3E = 1139$
+- $3A + 1B + 2C + D + 3E = 1397$
+- $4A + 2B + 3C + D + E = 1319$
+- $A + 2B + 4C + 2D + 3E = 1054$
+
+Indicate if each of the following statements is True or False.
+1. $C = 105$
+2. $A = 181$
+3. $E = 121$
+4. $B = 75$
+
+## Solutions
+- **Programming**:
+  - Gaussian elimination in $O(n^3)$, so it runs in less than $0.0001$
+  - Bruteforce in $O(20^5 \cdot log)$ which runs in less than 2 seconds.
+- **Math:**
+  - System of equations :))
+
+
+## Bruteforce Solution
+We would use recursion, you can [download the C++ code from here]()
+Input:
+```
+5
+BCDACCDEDCB 966
+ABBCAEEDECB 1099
+BACDAEAEECA 1357
+CACADBACAEB 1279
+EDDCABBCCEE 1014
+4
+C serine
+A trysine
+E cysteine
+B glycine
+```
+Output:
+```
+A: tryptophan
+B: glycine
+C: alanine
+D: serine
+E: cystine
+```
+
+
+
+
+
+
 
