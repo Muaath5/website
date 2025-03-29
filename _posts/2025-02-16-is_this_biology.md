@@ -64,7 +64,7 @@ Indicate if each of the following statements is True or False.
 
 
 ## Bruteforce Solution
-We would use recursion, you can [download the C++ code from here]()
+We would use recursion, you can [download the C++ code from here](/scripts/bio_problem.cpp)
 Input:
 ```
 5
