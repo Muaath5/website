@@ -1,0 +1,40 @@
+[
+    {
+        "start_date": "2021/10/04",
+        "name": "TDLibBinaries",
+        "description": "ملفات مكتبة TDLib مع سكربتات للـcompilation"
+        "badge": "مؤرشف",
+        "links": {
+            "github": "Muaath5/TDLibBinaries"
+        }
+    },
+    {
+        "start_date": "2021/07/24",
+        "name": "Simple Bot API",
+        "description": "مكتبة PHP سهلة ومتوافقة مع جميع إصدارات Bot API للتيليجرام"
+        "badge": "مؤرشف",
+        "links": {
+            "github": "Muaath5/SimpleBotAPI"
+        }
+    },
+    {
+        "start_date": "2022/12/23",
+        "name": "منصة التحكيم السعودية - SOJ",
+        "description": "أول منصة عربية وسعودية لتحكيم وتشغيل الأكواد وكتابة المسائل"
+        "badge": "متوقف جزئيًا",
+        "links": {
+            "github": "SaudiOnlineJudge",
+            "telegram": "SaudiOnlineJudge",
+            "x": "SaudiJudge"
+        }
+    },
+    {
+        "start_date": "2025/04/24",
+        "name": "Deobfuscate CodeHashifier",
+        "description": "موقع مفتوح المصدر يفك تشويش برامج C++ المشوشة بأحد البرامج"
+        "links": {
+            "github": "https://github.com/Muaath5/deobfuscate_codehashifier",
+            "url": "https://deobfuscate.muaath.dev/"
+        }
+    }
+]
