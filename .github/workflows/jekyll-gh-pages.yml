@@ -34,7 +34,7 @@ jobs:
         with:
           python-version: '3.x'  # Specify the Python version you need  
       - name: Run build.py script
-       run: python build.py
+        run: python build.py
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
