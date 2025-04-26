@@ -1,5 +1,5 @@
 # Personal website
 
-Check [my portfolio](/portfolio).
+Check [my portfolio](https://muaath.dev/).
 
-Also [my blog](/blog).
+Also [my blog](https://muaath.dev/blog).
