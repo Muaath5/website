@@ -49,7 +49,7 @@ def main():
 
 
     write_file('index.html', {
-        'name': 'معاذ القرني',
+        'title': 'معاذ القرني',
         'description': 'موقع شخصي',
         'lang': 'ar',
         'layout': 'home',
@@ -57,7 +57,7 @@ def main():
         #'awards': awards
     })
     write_file('en.html', {
-        'name': 'Muaath Alqarni',
+        'title': 'Muaath Alqarni',
         'description': 'Personal website',
         'lang': 'en',
         'layout': 'home',
