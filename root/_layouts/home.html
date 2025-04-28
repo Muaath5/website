@@ -86,6 +86,7 @@ navbar
                         </span>
                         {% endif %}
                     </h5>
+                    <p class="card-text"><small class="text-body-secondary">{{ page.projects[i].start_date }}</small></p>
                     <p class="card-text">{{ page.projects[i][page.lang].description }}</p>
                     <div class="btn-group" role="group" aria-label="Links">
                         {% if page.projects[i].links.github %}

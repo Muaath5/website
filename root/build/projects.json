@@ -47,6 +47,22 @@
         }
     },
     {
+        "start_date": "2024/04/12",
+        "ar": {
+            "name": "السمبوسات المتساقطة",
+            "description": "لعبة على المتصفح مبنية على أحد المسائل"
+        },
+        "en": {
+            "name": "Falling Sambosas",
+            "description": "A browser game based on a problem"
+        },
+        "status": "paused",
+        "links": {
+            "github": "Muaath5/FallingSambosas",
+            "url": "https://sambosas.muaath.dev/"
+        }
+    },
+    {
         "start_date": "2025/04/24",
         "ar": {
             "name": "Deobfuscate CodeHashifier",
@@ -58,7 +74,7 @@
         },
         "status": "archived",
         "links": {
-            "github": "https://github.com/Muaath5/deobfuscate_codehashifier",
+            "github": "Muaath5/deobfuscate_codehashifier",
             "url": "https://deobfuscate.muaath.dev/"
         }
     }

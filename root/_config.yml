@@ -8,7 +8,7 @@ twitter:
   username: Muaath_dev
   card: summary
 
-markdown: GFM
+# markdown: GFM
 theme: jekyll-theme-cayman
 
 exclude:
