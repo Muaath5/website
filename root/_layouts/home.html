@@ -4,7 +4,14 @@ layout: base
 <!--
 navbar
 -->
-<main id="content" class="py-5 container">
+<main id="content" class="pb-5 pt-2 container">
+    <div class="row text-end mb-4">
+        {% if page.lang == "en" %}
+        <a class="fs-6" href="/">العربية</a>
+        {% else %}
+        <a class="fs-6" href="/en">English</a>
+        {% endif %}
+    </div>
     <div class="row mt-1">
         <div class="col-md-6 col-sm-12 mt-1">
             <div class="rounded-2 p-3 m-1 bg-secondary-subtle h-100 d-flex flex-column">

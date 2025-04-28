@@ -1,6 +1,3 @@
-name: 'Muaath website'
-title: 'Muaath website'
-description: 'Personal website'
 permalink: /blog/:title
 url: https://muaath.dev
 
