@@ -1,0 +1,51 @@
+[
+    {
+        "year": "2025",
+        "ar_name": "North-Africa Olympiad in Informatics (NAOI)",
+        "en_name": "أولمبياد شمال أفريقيا للمعلوماتية (NAOI)",
+        "award": "silver",
+        "type": "olympiad"
+    },
+    {
+        "year": "2025",
+        "ar_name": "مسابقة بيبراس للمعلوماتية",
+        "en_name": "Bebras Contest in Informatics",
+        "award": "gold",
+        "type": "national_olympiad"
+    },
+    {
+        "year": "2024",
+        "ar_name": "Balkan Olympiad in Informatics (BOI)",
+        "en_name": "أولمبياد البلقان للمعلوماتية (BOI)",
+        "award": "hm",
+        "type": "olympiad"
+    },
+    {
+        "year": "2024",
+        "ar_name": "الأولمبياد الوطني للبرمجة والذكاء الاصطناعي (أذكى)",
+        "en_name": "National Olympiad for Programming and AI (ATHKA)",
+        "award": "silver",
+        "type": "national_olympiad"
+    },   
+    {
+        "year": "2024",
+        "ar_name": "منافسات اللغة العربية",
+        "en_name": "Arabic Language Competitions",
+        "award": "bronze",
+        "type": "national_olympiad"
+    },
+    {
+        "year": "2020",
+        "ar_name": "مسابقة الكنجارو للرياضيات",
+        "en_name": "Kangaroo Math Contest",
+        "award": "silver",
+        "type": "national_olympiad"
+    },
+    {
+        "year": "2020",
+        "ar_name": "مسابقة بيبراس للمعلوماتية",
+        "en_name": "Bebras Contest in Informatics",
+        "award": "gold",
+        "type": "national_olympiad"
+    }
+]

@@ -1,0 +1,7 @@
+{
+    "archived": {"color": "secondary", "en": "Archived", "ar": "مؤرشف"},
+    "wip": {"color": "primary", "en": "Work in progress", "ar": "أعمل عليه"},
+    "finished": {"color": "success", "en": "Finished", "ar": "منتهي"},
+    "paused": {"color": "secondary", "en": "Paused", "ar": "موقف مؤقتًا"},
+    "soon": {"color": "secondary", "en": "Soon", "ar": "قريبًا"}
+}
