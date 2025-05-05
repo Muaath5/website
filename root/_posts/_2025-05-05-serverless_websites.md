@@ -1,5 +1,5 @@
 ---
-title: "Serverless websites"
+title: "Free Serverless websites"
 description: "writing about tools that will help you create amazing website without server pain"
 tags: ["webdev"]
 lang: en
@@ -9,6 +9,9 @@ usemathjax: false
 
 ## Github pages
 This gives you unlimited static websites.
+
+### Github Actions
+you can use this also to prebuild pages for your website which makes it fast and easy to maintain.
 
 ## Cloudflare D1 & Workers
 Using this, you can configure a website to view any type of database, for example you have a webapp that is for students certificates export, you can do it as following:
