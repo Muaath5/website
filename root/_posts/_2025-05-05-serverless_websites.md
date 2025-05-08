@@ -3,7 +3,6 @@ title: "Free Serverless websites"
 description: "writing about tools that will help you create amazing website without server pain"
 tags: ["webdev"]
 lang: en
-layout: blog
 usemathjax: false
 ---
 

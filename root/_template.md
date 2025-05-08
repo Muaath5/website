@@ -4,6 +4,5 @@ title: ""
 description: ""
 tags: ["abc", "def"]
 lang: en
-layout: blog
 usemathjax: false
 ---
