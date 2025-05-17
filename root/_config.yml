@@ -2,11 +2,18 @@ title: ""
 permalink: /blog/:title
 url: https://muaath.dev
 
+
+# Changelog:
+# 1.0 (2023/12/30): Initial website
+# 2.0 (2024/07/31): muaath.dev domain
+# 3.0 (2025/04/06): Adding Arabic/English with autobuilding for index
+version: "3.0"
+
 twitter:
   username: Muaath_dev
   card: summary
 
-markdown: GFM
+# markdown: GFM
 theme: jekyll-theme-cayman
 
 exclude:

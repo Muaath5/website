@@ -1,4 +1,4 @@
-import os, json
+import os, json, datetime, subprocess
 
 ROOT_DIR = './root'
 
@@ -29,15 +29,36 @@ def write_yml(data: dict, indent: int = 0) -> str:
     return res
 
 
-def write_file(filename: str, vals: dict):
+def write_file(filename: str, vals: dict, mode: str = 'w'):
     filename = ROOT_DIR + '/' + filename
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write("---\n")
+    with open(filename, mode, encoding='utf-8') as f:
+        if mode == 'w':
+            f.write("---\n")
+        else:
+            f.write("\n\n")
+
         f.write(write_yml(vals))
-        f.write("---\n")
+
+        if mode == 'w':
+            f.write("---\n")
+
+def get_commits_count() -> int:
+    CMD = 'git rev-list --count HEAD'
+    return int(subprocess.check_output(CMD, shell=True, text=True))
 
 def main():
+    build_time = datetime.datetime.now()
+    build_time_str = build_time.strftime("%Y/%m/%d - %H:%M:%S")
+
+    print(f"Started building at: {build_time_str}")
+    print(f"Commit number: {get_commits_count()}")
+
+    write_file('_config.yml', {
+        'build_time': build_time_str,
+        'commit_number': get_commits_count()
+    }, 'a')
+
     projects = load_json('projects')
     awards = load_json('awards')
     badges = load_json('project_badges')
