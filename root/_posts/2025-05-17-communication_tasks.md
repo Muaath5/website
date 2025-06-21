@@ -3,7 +3,7 @@ title: "Communication tasks"
 description: "A.k.a Two-Steps"
 tags: ["cp", "resource", "tutorial"]
 lang: en
-usemathjax: false
+usemathjax: true
 ---
 
 ## What is Communication?
