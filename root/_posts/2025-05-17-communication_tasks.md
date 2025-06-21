@@ -15,8 +15,8 @@ Tags:
 - $C$: Have a middle communicator which might try to miss the communication
 - $S$: Special type
 
-## Introcution
-- [CSES - Permutation Order](https://cses.fi/problemset/task/3397): Alice receives $1 \le X \le 10^18$ returns a permutation of size at most $20$, Bob recieves a permutation and needs to find $X$ (Same as APIO 2024 Practice).
+## Introdution
+- [CSES - Permutation Order](https://cses.fi/problemset/task/3397): Alice receives $1 \le X \le 10^{18}$ returns a permutation of size at most $20$, Bob recieves a permutation and needs to find $X$ (Same as APIO 2024 Practice).
 - [USACO Guide - Interactice/Communication](https://usaco.guide/adv/interactive)
 
 ## IOI
