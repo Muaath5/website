@@ -2,7 +2,7 @@
 title: "منصات تحكيم الأكواد (Online Judges)"
 description: "المواقع وميزاتها وسلبياتها"
 lang: ar
-tags: ["cp"]
+tags: ["cp", "judgement"]
 ---
 بسم الله والحمد لله والصلاة والسلام على رسول الله
 
