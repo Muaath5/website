@@ -1,22 +1,25 @@
-import os, json, datetime, subprocess
-
-ROOT_DIR = './root'
-
-SECRET_COPY_DIRNAME = f'{ROOT_DIR}/secret_copy'
-SECRET_DIRNAME = f'{ROOT_DIR}/secret'
-
 import os
 import requests
 import base64
 import json
+import datetime
+import subprocess
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
 
-
+ROOT_DIR = './root'
+SECRET_COPY_DIRNAME = f'{ROOT_DIR}/secret_copy'
+SECRET_DIRNAME = f'{ROOT_DIR}/secret'
 
 def get_env_vars():
-    return os.getenv('GITHUB_TOKEN'), os.getenv('MU_REPO')
+    token = os.getenv('GITHUB_TOKEN')
+    mu_repo = os.getenv('MU_REPO')
+    if not token:
+        print("Error: GITHUB_TOKEN is not set")
+    if not mu_repo:
+        print("Error: MU_REPO is not set")
+    return token, mu_repo
 
 def gh_api_get(token, call):
     resp = requests.get(f'https://api.github.com/{call}', headers={
@@ -26,26 +29,26 @@ def gh_api_get(token, call):
     })
     if resp.status_code != 200:
         err = resp.json()
-        print(f"Call: {call}\n")
-        print(f"\n{err['status']}: {err['message']}\n")
-        exit(0)
+        print(f"Call: {call}\n{err.get('status', 'Unknown')}: {err.get('message', 'Unknown error')}\n")
         return None
     try:
         return resp.json()
     except:
         return resp
-    
-def check_github_token(token) -> bool:
-    if gh_api_get(token, 'octocat') == None:
+
+def check_github_token(token):
+    if not token or gh_api_get(token, 'octocat') is None:
+        print("Error: Invalid or missing GITHUB_TOKEN")
         return False
     return True
 
 def fetch_file(token, repo, file_path):
     file = gh_api_get(token, f'repos/{repo}/contents/{file_path}')
-    return base64.b64decode(file['content'])
+    return base64.b64decode(file['content']) if file else None
 
-def fetch_repo_contents(token, repo) -> list:
-    return [item['path'] for item in gh_api_get(token, f'repos/{repo}/contents') if item['type'] == 'file']
+def fetch_repo_contents(token, repo):
+    contents = gh_api_get(token, f'repos/{repo}/contents')
+    return [item['path'] for item in contents if item['type'] == 'file'] if contents else []
 
 def encrypt_content(content, key):
     key = key.ljust(32)[:32].encode('utf-8')
@@ -70,29 +73,25 @@ def copy_secret_copy_files(secret, files):
 
 def secret_files():
     token, mu_repo = get_env_vars()
-    
-    if mu_repo == '' or mu_repo == None:
-        print("S: No environment variables")
+    if not token or not mu_repo:
+        print("Error: Missing environment variables")
         return
 
     if not check_github_token(token):
-        print("S: Token error")
         return
 
     # Fetch info.json
     info_content = fetch_file(token, mu_repo, 'info.json')
     if not info_content:
-        print('S: Failed to fetch info.json')
+        print('Error: Failed to fetch info.json')
         return
     storages = json.loads(info_content.decode('utf-8'))
 
     # Fetch files from secret_copy/ if it exists
-    if os.path.exists(SECRET_COPY_DIRNAME):
-        secret_copy_files = [os.path.join(SECRET_COPY_DIRNAME, f) for f in os.listdir(SECRET_COPY_DIRNAME)] 
-    else:
-        secret_copy_files = []
+    secret_copy_files = [os.path.join(SECRET_COPY_DIRNAME, f) for f in os.listdir(SECRET_COPY_DIRNAME)] if os.path.exists(SECRET_COPY_DIRNAME) else []
+    if not secret_copy_files:
         print("Note: No secret copy directory found")
-    
+
     # Process each secret storage
     for storage in storages:
         secret, repo = storage['secret'], storage['repo']
@@ -103,10 +102,9 @@ def secret_files():
                 encrypted_content = encrypt_content(content, secret)
                 save_file(encrypted_content, f'{SECRET_DIRNAME}/{secret}/{file_path}.enc')
             else:
-                print(f'S: Failed to fetch {file_path} from {repo}')
+                print(f'Error: Failed to fetch {file_path} from {repo}')
         # Copy secret_copy/ files without encryption
         copy_secret_copy_files(secret, secret_copy_files)
-
 
 def load_json(filename):
     with open(f'{ROOT_DIR}/build/{filename}.json', 'r', encoding='utf-8') as f:
@@ -115,10 +113,10 @@ def load_json(filename):
 def write_yml(data: dict, indent: int = 0) -> str:
     res = ""
     for key, val in data.items():
-        if type(val) is dict:
+        if isinstance(val, dict):
             res += " " * indent + str(key) + ":\n"
             res += write_yml(val, indent + 2)
-        elif type(val) is list:
+        elif isinstance(val, list):
             res += " " * indent + str(key) + ":\n"
             res += " " * (indent+2) + f"count: {len(val)}\n"
             for i in range(len(val)):
@@ -126,14 +124,13 @@ def write_yml(data: dict, indent: int = 0) -> str:
                 res += write_yml(mp, indent + 2)
         elif val is None:
             res += " " * indent + str(key) + ": null\n"
-        elif type(val) is bool:
+        elif isinstance(val, bool):
             res += " " * indent + str(key) + ": " + str(val).lower() + "\n"
-        elif type(val) is int:
+        elif isinstance(val, int):
             res += " " * indent + str(key) + ": " + str(val) + "\n"
         else:
             res += " " * indent + str(key) + ": \"" + str(val) + "\"\n"
     return res
-
 
 def write_file(filename: str, vals: dict, mode: str = 'w'):
     filename = ROOT_DIR + '/' + filename
@@ -141,11 +138,7 @@ def write_file(filename: str, vals: dict, mode: str = 'w'):
     with open(filename, mode, encoding='utf-8') as f:
         if mode == 'w':
             f.write("---\n")
-        else:
-            f.write("\n\n")
-
         f.write(write_yml(vals))
-
         if mode == 'w':
             f.write("---\n")
 
@@ -156,7 +149,6 @@ def get_commits_count() -> int:
 def main():
     build_time = datetime.datetime.now()
     build_time_str = build_time.strftime("%Y/%m/%d - %H:%M:%S")
-
     print(f"Started building at: {build_time_str}")
     print(f"Commit number: {get_commits_count()}")
 
@@ -174,14 +166,12 @@ def main():
         proj['ar']['status'] = badges[proj['status']]['ar']
         proj['en']['status'] = badges[proj['status']]['en']
 
-
     write_file('index.html', {
         'title': 'معاذ القرني',
         'description': 'موقع شخصي',
         'lang': 'ar',
         'layout': 'home',
         'projects': projects,
-        #'awards': awards
     })
     write_file('en.html', {
         'title': 'Muaath Alqarni',
@@ -189,8 +179,9 @@ def main():
         'lang': 'en',
         'layout': 'home',
         'projects': projects,
-        #'awards': awards
     })
 
-main()
-secret_files()
+    secret_files()
+
+if __name__ == '__main__':
+    main()
