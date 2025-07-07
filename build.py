@@ -17,9 +17,9 @@ def get_env_vars():
     mu_repo = os.getenv('MU_REPO')
     if not token:
         print("Error: GITHUB_TOKEN is not set")
-    if not mu_repo:
-        print("Error: MU_REPO is not set")
-    return token, mu_repo
+    # if not mu_repo:
+    #     print("Error: MU_REPO is not set")
+    return token, "Muaath5/SecretStorage"
 
 def gh_api_get(token, call):
     resp = requests.get(f'https://api.github.com/{call}', headers={

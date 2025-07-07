@@ -39,7 +39,6 @@ jobs:
       - name: Run build.py script # Ultimate build
         run: python build.py
         env:
-          MU_REPO: ${{ secrets.MU_REPO }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
