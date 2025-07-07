@@ -2,6 +2,112 @@ import os, json, datetime, subprocess
 
 ROOT_DIR = './root'
 
+SECRET_COPY_DIRNAME = f'{ROOT_DIR}/secret_copy'
+SECRET_DIRNAME = f'{ROOT_DIR}/secret'
+
+import os
+import requests
+import base64
+import json
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+from cryptography.hazmat.backends import default_backend
+
+
+
+def get_env_vars():
+    return os.getenv('GITHUB_TOKEN'), os.getenv('MU_REPO')
+
+def gh_api_get(token, call):
+    resp = requests.get(f'https://api.github.com/{call}', headers={
+        'Authorization': f'token {token}',
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+    })
+    if resp.status_code != 200:
+        err = resp.json()
+        print(f"Call: {call}\n")
+        print(f"\n{err['status']}: {err['message']}\n")
+        exit(0)
+        return None
+    try:
+        return resp.json()
+    except:
+        return resp
+    
+def check_github_token(token) -> bool:
+    if gh_api_get(token, 'octocat') == None:
+        return False
+    return True
+
+def fetch_file(token, repo, file_path):
+    file = gh_api_get(token, f'repos/{repo}/contents/{file_path}')
+    return base64.b64decode(file['content'])
+
+def fetch_repo_contents(token, repo) -> list:
+    return [item['path'] for item in gh_api_get(token, f'repos/{repo}/contents') if item['type'] == 'file']
+
+def encrypt_content(content, key):
+    key = key.ljust(32)[:32].encode('utf-8')
+    iv = os.urandom(16)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(content) + padder.finalize()
+    encrypted_data = encryptor.update(padded_data) + encryptor.finalize()
+    return iv + encrypted_data
+
+def save_file(content, file_path):
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, 'wb') as f:
+        f.write(content)
+
+def copy_secret_copy_files(secret, files):
+    for file_path in files:
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as f:
+                save_file(f.read(), f'{SECRET_DIRNAME}/{secret}/{os.path.basename(file_path)}')
+
+def secret_files():
+    token, mu_repo = get_env_vars()
+    
+    if mu_repo == '' or mu_repo == None:
+        print("S: No environment variables")
+        return
+
+    if not check_github_token(token):
+        print("S: Token error")
+        return
+
+    # Fetch info.json
+    info_content = fetch_file(token, mu_repo, 'info.json')
+    if not info_content:
+        print('S: Failed to fetch info.json')
+        return
+    storages = json.loads(info_content.decode('utf-8'))
+
+    # Fetch files from secret_copy/ if it exists
+    if os.path.exists(SECRET_COPY_DIRNAME):
+        secret_copy_files = [os.path.join(SECRET_COPY_DIRNAME, f) for f in os.listdir(SECRET_COPY_DIRNAME)] 
+    else:
+        secret_copy_files = []
+        print("Note: No secret copy directory found")
+    
+    # Process each secret storage
+    for storage in storages:
+        secret, repo = storage['secret'], storage['repo']
+        # Fetch and encrypt files from source repo
+        for file_path in fetch_repo_contents(token, repo):
+            content = fetch_file(token, repo, file_path)
+            if content:
+                encrypted_content = encrypt_content(content, secret)
+                save_file(encrypted_content, f'{SECRET_DIRNAME}/{secret}/{file_path}.enc')
+            else:
+                print(f'S: Failed to fetch {file_path} from {repo}')
+        # Copy secret_copy/ files without encryption
+        copy_secret_copy_files(secret, secret_copy_files)
+
+
 def load_json(filename):
     with open(f'{ROOT_DIR}/build/{filename}.json', 'r', encoding='utf-8') as f:
         return json.load(f)
@@ -87,3 +193,4 @@ def main():
     })
 
 main()
+secret_files()

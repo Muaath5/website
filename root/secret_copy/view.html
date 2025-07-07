@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Secret File</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <h1>Display File</h1>
+  <input type="password" id="password" placeholder="Enter password">
+  <input type="text" id="file" placeholder="Enter file path (e.g., file)">
+  <button onclick="displayFile()">Display</button>
+  <pre id="output"></pre>
+  <script>
+    async function displayFile() {
+      const password = document.getElementById('password').value;
+      const file = document.getElementById('file').value;
+      try {
+        const response = await fetch(`./${file}.html.enc`);
+        if (!response.ok) throw new Error('File not found');
+        const encryptedData = await response.arrayBuffer();
+        const iv = new Uint8Array(encryptedData.slice(0, 16));
+        const ciphertext = new Uint8Array(encryptedData.slice(16));
+        const key = CryptoJS.enc.Utf8.parse(password.padEnd(32).slice(0, 32));
+        const decrypted = CryptoJS.AES.decrypt(
+          { ciphertext: CryptoJS.lib.WordArray.create(ciphertext) },
+          key,
+          { iv: CryptoJS.lib.WordArray.create(iv) }
+        );
+        const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
+        if (!decryptedText) throw new Error('Decryption failed');
+        
+        // Create new page with decrypted content
+        const newWindow = window.open('');
+        newWindow.document.write(decryptedText);
+        newWindow.document.close();
+        document.getElementById('output').textContent = 'Content displayed in new page';
+      } catch (error) {
+        document.getElementById('output').textContent = 'Error: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>

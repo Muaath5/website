@@ -1,2 +1,4 @@
 _site
 .jekyll-cache
+root/secret
+root/secret/*

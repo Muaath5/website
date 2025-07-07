@@ -54,3 +54,4 @@ This is bounded by [`RAND_MAX` macro](https://en.cppreference.com/w/cpp/numeric/
 You can use [`void srand(unsigned seed)` function](https://en.cppreference.com/w/cpp/numeric/random/srand.html), default seed is $1$, but you must put an unpredictable seed.
 
 ### Not really random
+Because [`rand()`]() depends on compiler implementation, it could have some issues
