@@ -24,6 +24,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      MU_REPO: ${{ secrets.MU_REPO }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,11 +39,7 @@ jobs:
       - name: Install dependencies # Install libs
         run: pip install requests cryptography
       - name: Run build.py script # Ultimate build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MU_REPO: ${{ secrets.MU_REPO }}
-        run: |
-          python build.py
+        run: python build.py
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
