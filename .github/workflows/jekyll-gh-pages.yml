@@ -38,7 +38,7 @@ jobs:
       - name: Run build.py script # Ultimate build
         run: python build.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
