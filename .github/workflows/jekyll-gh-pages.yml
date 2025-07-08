@@ -37,7 +37,7 @@ jobs:
         run: pip install requests cryptography
       - name: Run build.py script # Ultimate build
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MU_REPO: ${{ secrets.MU_REPO }}
         run: |
           python build.py
