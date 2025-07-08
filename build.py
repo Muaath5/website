@@ -13,10 +13,10 @@ SECRET_COPY_DIRNAME = f'{ROOT_DIR}/secret_copy'
 SECRET_DIRNAME = f'{ROOT_DIR}/secret'
 
 def get_env_vars():
-    token = os.getenv('GITHUB_TOKEN')
+    token = os.getenv('GH_TOKEN')
     mu_repo = os.getenv('MU_REPO')
     if not token:
-        print("Error: GITHUB_TOKEN is not set")
+        print("Error: GH_TOKEN is not set")
     # if not mu_repo:
     #     print("Error: MU_REPO is not set")
     return token, "Muaath5/SecretStorage"
@@ -29,7 +29,7 @@ def gh_api_get(token, call):
     })
     if resp.status_code != 200:
         err = resp.json()
-        print(f"Call: {call}\n{err.get('status', 'Unknown')}: {err.get('message', 'Unknown error')}\n")
+        print(f"\n{err.get('status', 'Unknown')}: {err.get('message', 'Unknown error')}\n")
         return None
     try:
         return resp.json()
