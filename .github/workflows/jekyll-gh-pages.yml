@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
       MU_REPO: ${{ secrets.MU_REPO }}
     steps:
       - name: Checkout
@@ -36,10 +36,10 @@ jobs:
           python-version: '3.x'  # Specify the Python version you need  
       - name: Install dependencies # Install libs
         run: pip install requests cryptography
-      # - name: Printing env variables
-      #   run: env
-      #   env:
-      #     GH_TOKEN: ${{ github.GH_TOKEN }}
+      - name: Printing env variables
+        run: env
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       #     MU_REPO: ${{ secrets.GH_TOKEN }}
       #     TESTING_VAR: ${{ env.TESTING_ENV_VARS }}
       #     TESTING2: asdf
