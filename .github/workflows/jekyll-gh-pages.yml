@@ -36,17 +36,6 @@ jobs:
           python-version: '3.x'  # Specify the Python version you need  
       - name: Install dependencies # Install libs
         run: pip install requests cryptography
-      - name: Printing env variables
-        run: env
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      #     MU_REPO: ${{ secrets.GH_TOKEN }}
-      #     TESTING_VAR: ${{ env.TESTING_ENV_VARS }}
-      #     TESTING2: asdf
-      - name: Printing the token explicitly for everyone
-        run: echo $GH_TOKEN
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run build.py script # Ultimate build
         run: python build.py
         env:

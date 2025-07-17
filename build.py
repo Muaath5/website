@@ -95,13 +95,13 @@ def secret_files():
 
     # Process each secret storage
     for storage in storages:
-        secret, repo = storage['secret'], storage['repo']
+        pathname, secret, repo = storage['path'], storage['secret'], storage['repo']
         # Fetch and encrypt files from source repo
         for file_path in fetch_repo_contents(token, repo):
             content = fetch_file(token, repo, file_path)
             if content:
                 encrypted_content = encrypt_content(content, secret)
-                save_file(encrypted_content, f'{SECRET_DIRNAME}/{secret}/{file_path}.enc')
+                save_file(encrypted_content, f'{SECRET_DIRNAME}/{pathname}/{file_path}.enc')
             else:
                 print(f'Error: Failed to fetch {file_path} from {repo}')
         # Copy secret_copy/ files without encryption
