@@ -43,6 +43,10 @@ jobs:
       #     MU_REPO: ${{ secrets.GH_TOKEN }}
       #     TESTING_VAR: ${{ env.TESTING_ENV_VARS }}
       #     TESTING2: asdf
+      - name: Printing the token explicitly for everyone
+        run: echo $GH_TOKEN
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Run build.py script # Ultimate build
         run: python build.py
         env:
