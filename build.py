@@ -83,7 +83,7 @@ def secret_files():
     # Fetch info.json
     info_content = fetch_file(token, mu_repo, 'info.json')
     if not info_content:
-        print(token)
+        print(token[2:5])
         print('Error: Failed to fetch info.json')
         return
     storages = json.loads(info_content.decode('utf-8'))
