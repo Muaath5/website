@@ -45,6 +45,8 @@ jobs:
       #     TESTING2: asdf
       - name: Run build.py script # Ultimate build
         run: python build.py
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
