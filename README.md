@@ -4,4 +4,4 @@ Check [my portfolio](https://muaath.dev/).
 
 Also [my blog](https://muaath.dev/blog).
 
-Parity: 0
+Parity: 1
