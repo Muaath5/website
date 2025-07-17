@@ -105,7 +105,7 @@ def secret_files():
             else:
                 print(f'Error: Failed to fetch {file_path} from {repo}')
         # Copy secret_copy/ files without encryption
-        copy_secret_copy_files(secret, secret_copy_files)
+        copy_secret_copy_files(pathname, secret_copy_files)
 
 def load_json(filename):
     with open(f'{ROOT_DIR}/build/{filename}.json', 'r', encoding='utf-8') as f:
