@@ -1,8 +1,15 @@
 [
     {
         "year": "2025",
-        "ar_name": "North-Africa Olympiad in Informatics (NAOI)",
-        "en_name": "أولمبياد شمال أفريقيا للمعلوماتية (NAOI)",
+        "ar_name": "الأولمبياد الدولي للذكاء الاصطناعي (IOAI)",
+        "en_name": "International Olympiad in Artificial Intelligence (IOAI)",
+        "award": "bronze",
+        "type": "olympiad"
+    },
+    {
+        "year": "2025",
+        "ar_name": "أولمبياد شمال أفريقيا للمعلوماتية (NAOI)",
+        "en_name": "North-Africa Olympiad in Informatics (NAOI)",
         "award": "silver",
         "type": "olympiad"
     },
@@ -15,8 +22,8 @@
     },
     {
         "year": "2024",
-        "ar_name": "Balkan Olympiad in Informatics (BOI)",
-        "en_name": "أولمبياد البلقان للمعلوماتية (BOI)",
+        "ar_name": "أولمبياد البلقان للمعلوماتية (BOI)",
+        "en_name": "Balkan Olympiad in Informatics (BOI)",
         "award": "hm",
         "type": "olympiad"
     },
