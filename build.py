@@ -46,9 +46,22 @@ def fetch_file(token, repo, file_path):
     file = gh_api_get(token, f'repos/{repo}/contents/{file_path}')
     return base64.b64decode(file['content']) if file else None
 
-def fetch_repo_contents(token, repo):
-    contents = gh_api_get(token, f'repos/{repo}/contents')
-    return [item['path'] for item in contents if item['type'] == 'file'] if contents else []
+def fetch_repo_contents(token, repo, path=''):
+    contents = gh_api_get(token, f'repos/{repo}/contents/{path}')
+    
+    if not contents:
+        return []
+    
+    all_files = []
+    
+    for item in contents:
+        if item['type'] == 'file':
+            all_files.append(item['path'])
+        elif item['type'] == 'dir':
+            # Recursively fetch contents of subdirectories
+            all_files.extend(fetch_repo_contents(token, repo, item['path']))
+    
+    return all_files
 
 def encrypt_content(content, key):
     key = key.ljust(32)[:32].encode('utf-8')
