@@ -95,17 +95,27 @@ def secret_files():
 
     # Process each secret storage
     for storage in storages:
-        pathname, secret, repo = storage['path'], storage['secret'], storage['repo']
-        # Fetch and encrypt files from source repo
-        for file_path in fetch_repo_contents(token, repo):
-            content = fetch_file(token, repo, file_path)
-            if content:
-                encrypted_content = encrypt_content(content, secret)
-                save_file(encrypted_content, f'{SECRET_DIRNAME}/{pathname}/{file_path}.enc')
-            else:
-                print(f'Error: Failed to fetch {file_path} from {repo}')
-        # Copy secret_copy/ files without encryption
-        copy_secret_copy_files(pathname, secret_copy_files)
+        pathname, repo = storage['path'], storage['repo']
+        if 'secret' in storage:
+            secret = storage['secret']
+            # Fetch and encrypt files from source repo
+            for file_path in fetch_repo_contents(token, repo):
+                content = fetch_file(token, repo, file_path)
+                if content:
+                    encrypted_content = encrypt_content(content, secret)
+                    save_file(encrypted_content, f'{SECRET_DIRNAME}/{pathname}/{file_path}.enc')
+                else:
+                    print(f'Error: Failed to fetch {file_path} from {repo}')
+            # Copy secret_copy/ files without encryption
+            copy_secret_copy_files(pathname, secret_copy_files)
+        else:
+            for file_path in fetch_repo_contents(token, repo):
+                content = fetch_file(token, repo, file_path)
+                if content:
+                    save_file(content, f'{SECRET_DIRNAME}/{pathname}/{file_path}')
+                else:
+                    print(f'Error: Failed to fetch {file_path} from {repo}')
+
 
 def load_json(filename):
     with open(f'{ROOT_DIR}/build/{filename}.json', 'r', encoding='utf-8') as f:

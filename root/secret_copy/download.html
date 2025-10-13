@@ -15,7 +15,11 @@
       const password = document.getElementById('password').value;
       const file = document.getElementById('file').value;
       try {
-        const response = await fetch(`./${file}.enc`);
+        let filename = `./${file}.enc`;
+        if (!file.includes('.')) {
+          filename = `./${file}.html.enc`;
+        }
+        const response = await fetch(filename);
         if (!response.ok) throw new Error('File not found');
         const encryptedData = await response.arrayBuffer();
         const iv = new Uint8Array(encryptedData.slice(0, 16));

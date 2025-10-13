@@ -7,15 +7,21 @@
 <body>
   <h1>Display File</h1>
   <input type="password" id="password" placeholder="Enter password">
-  <input type="text" id="file" placeholder="Enter file path (e.g., file)">
+  <input type="text" id="file" onkeypress="check(e)" placeholder="Enter file path (e.g., index, file.txt)">
   <button onclick="displayFile()">Display</button>
   <pre id="output"></pre>
   <script>
+    
     async function displayFile() {
       const password = document.getElementById('password').value;
       const file = document.getElementById('file').value;
       try {
-        const response = await fetch(`./${file}.html.enc`);
+        let filename = `./${file}.enc`;
+        if (!file.includes('.')) {
+          filename = `./${file}.html.enc`;
+        }
+        console.log(filename)
+        const response = await fetch(filename);
         if (!response.ok) throw new Error('File not found');
         const encryptedData = await response.arrayBuffer();
         const iv = new Uint8Array(encryptedData.slice(0, 16));
@@ -36,6 +42,12 @@
         document.getElementById('output').textContent = 'Content displayed in new page';
       } catch (error) {
         document.getElementById('output').textContent = 'Error: ' + error.message;
+      }
+    }
+    function check(e) {
+      e.preventDefault();
+      if (e.key == 13) {
+        displayFile();
       }
     }
   </script>
