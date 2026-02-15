@@ -2,22 +2,44 @@
 layout: blog
 ---
 {% include blog_announcement.html %}
-<div class="row">
-    <div class="col">
-        <h1>{{ page.title }}</h1>
-        <figure style="border-radius: 10px; border-left: 2px rgb(179, 179, 179) solid;" class="note note-secondary p-4">
-            <blockquote class="blockquote">
-                <p class="pb-2">
-                    {{ page.description }}
-                </p>
-            </blockquote>
-            <figcaption class="blockquote-footer mb-0">
+
+<article class="post-article" id="post-content">
+
+    <!-- Post Header -->
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+
+        <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}">
                 {{ page.date | date: "%Y/%m/%d" }}
-                {% if page.tags %}
-                , <span class="badge bg-secondary">{{ page.tags | join: '</span><span class="m-1 badge bg-secondary">' }}</span></small>
-                {% endif %}
-            </figcaption>
-        </figure>
+            </time>
+            <span class="meta-sep">&middot;</span>
+            <span class="reading-time" id="reading-time">
+                <i class="bi bi-clock"></i>
+                <span id="reading-time-text"></span>
+            </span>
+            {% if page.tags %}
+            <span class="meta-sep">&middot;</span>
+            <span class="post-tags">
+                {% for tag in page.tags %}
+                <a href="/blog/tags#{{ tag }}" class="tag">{{ tag }}</a>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+
+        {% if page.description %}
+        <div class="post-description">
+            <p>{{ page.description }}</p>
+        </div>
+        {% endif %}
+    </header>
+
+    <!-- Post Body -->
+    <div class="post-body">
+        {{ content }}
     </div>
-</div>
-{{ content }}
+
+</article>
+
+<script src="/assets/js/reading-time.js"></script>

@@ -1,19 +1,13 @@
-<div class="card mb-3">
-    <div class="card-body">
-        <h5 class="card-title">{{ blog.title }}</h5>
-        <p class="card-text">{{ blog.description }}</p>
-        <p class="card-text">
-            <small class="text-body-secondary">
-            {{ blog.date | date: "%Y/%m/%d" }}
-            {% if blog.tags %}
-                , <span class="badge bg-secondary">{{ blog.tags | join: '</span><span class="m-1 badge bg-secondary">' }}</span></small>
-            {% endif %}
-            </small>
-        </p>
-        <h6 class="card-subtitle mb-2 text-body-secondary">
-            
-        </h6>
-        <a href="{{ blog.url }}" class="btn btn-primary">Read the blog</a>
+<a href="{{ blog.url }}" class="blog-card">
+    <h5>{{ blog.title }}</h5>
+    <p>{{ blog.description }}</p>
+    <div class="card-meta">
+        <time>{{ blog.date | date: "%Y/%m/%d" }}</time>
+        {% if blog.tags %}
+        <span class="meta-sep">·</span>
+        {% for tag in blog.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        {% endif %}
     </div>
-</div>
-  
+</a>

@@ -1,7 +1,7 @@
 ---
 title: "Is this biology?"
 description: "A practice problem for Saudi Biology Olympiad"
-tags: ["c++", "cp"]
+tags: ["c++", "math", "cp"]
 lang: en
 usemathjax: true
 ---

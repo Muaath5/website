@@ -1,0 +1,647 @@
+/* ================================================================
+   Muaath Blog — Stylesheet
+   ----------------------------------------------------------------
+   Palette (3 colors):
+     Parchment  #FAFAF8   — background
+     Deep Ink   #1A1A2E   — text, table headers
+     Brass      #C4883A   — accent (links, borders, tags, brand dot)
+
+   Font:
+     IBM Plex Sans Arabic  — body (covers Arabic + Latin perfectly)
+     IBM Plex Mono         — code
+   ================================================================ */
+
+/* ── Variables ─────────────────────────────────────────────────── */
+:root {
+    --bg:           #FAFAF8;
+    --ink:          #1A1A2E;
+    --accent:       #C4883A;
+    --accent-light: #f2e4d0;
+    --gray:         #6B7280;
+    --gray-light:   #E5E7EB;
+    --gray-bg:      #F3F4F6;
+    --radius:       6px;
+    --font:         'IBM Plex Sans Arabic', sans-serif;
+    --mono:         'IBM Plex Mono', monospace;
+    --max-w:        720px;
+    --nav-h:        54px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ── RTL global flips ──────────────────────────────────────────── */
+[dir="rtl"]                     { text-align: right; }
+[dir="rtl"] .nav-links          { margin-right: auto; margin-left: 0; }
+
+/* ================================================================
+   LAYOUT SHELL  (used by blog.html)
+   ================================================================ */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container {
+    max-width: var(--max-w);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+.site-main {
+    flex: 1;
+    padding: 2.25rem 0 4rem;
+}
+
+/* ── Navbar ────────────────────────────────────────────────────── */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,250,248,.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gray-light);
+    height: var(--nav-h);
+}
+.nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.nav-brand {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    white-space: nowrap;
+}
+.brand-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+.nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+}
+.nav-link {
+    font-size: .85rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    transition: color .15s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link i { font-size: .95rem; }
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.site-footer {
+    border-top: 1px solid var(--gray-light);
+    padding: 1.75rem 0;
+    margin-top: auto;
+}
+.footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: .6rem;
+}
+.footer-social a {
+    color: var(--gray);
+    font-size: 1.1rem;
+    transition: color .15s;
+}
+.footer-social a:hover { color: var(--accent); }
+.footer-meta {
+    font-size: .78rem;
+    color: var(--gray);
+}
+.footer-sep { margin: 0 .3rem; }
+
+
+/* ================================================================
+   BLOG INDEX  (blog/index.html)
+   ================================================================ */
+.blog-index-header {
+    margin-bottom: 1.75rem;
+}
+.blog-index-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: .15rem;
+}
+.blog-index-subtitle {
+    font-size: .88rem;
+    color: var(--gray);
+}
+
+/* ── Card Grid ────────────────────────────────────────────────── */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .85rem;
+}
+@media (min-width: 560px) {
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Blog Card ────────────────────────────────────────────────── */
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius);
+    transition: border-color .15s, box-shadow .15s;
+}
+.blog-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 14px rgba(196,136,58,.09);
+}
+.blog-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: .3rem;
+}
+.blog-card-desc {
+    font-size: .84rem;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: .55rem;
+    /* clamp to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.blog-card-meta {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem;
+    font-size: .76rem;
+    color: var(--gray);
+}
+
+
+/* ================================================================
+   TAGS PAGE  (blog/tags.html)
+   ================================================================ */
+
+/* ── Tag Cloud ────────────────────────────────────────────────── */
+.tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 2.25rem;
+}
+.tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .35rem .85rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 500;
+    background: var(--gray-bg);
+    color: var(--ink);
+    transition: background .15s, color .15s;
+}
+.tag-chip:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.tag-chip:hover .tag-count {
+    background: rgba(255,255,255,.25);
+    color: #fff;
+}
+.tag-count {
+    font-size: .7rem;
+    font-weight: 600;
+    background: var(--gray-light);
+    color: var(--gray);
+    padding: .05rem .4rem;
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+}
+
+/* ── Tag Section ──────────────────────────────────────────────── */
+.tag-section {
+    margin-bottom: 2rem;
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.tag-section-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+.tag-hash {
+    color: var(--accent);
+    font-weight: 700;
+}
+.tag-section-count {
+    font-size: .72rem;
+    font-weight: 600;
+    background: var(--gray-bg);
+    color: var(--gray);
+    padding: .1rem .45rem;
+    border-radius: 999px;
+}
+
+/* ── Tag Post List ────────────────────────────────────────────── */
+.tag-posts {
+    display: flex;
+    flex-direction: column;
+}
+.tag-post-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--gray-light);
+    transition: color .12s;
+}
+.tag-post-item:last-child { border-bottom: none; }
+.tag-post-item:hover { color: var(--accent); }
+.tag-post-title {
+    font-size: .92rem;
+    font-weight: 500;
+}
+.tag-post-date {
+    font-size: .78rem;
+    color: var(--gray);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+
+/* ================================================================
+   POST ARTICLE  (post.html)
+   ================================================================ */
+
+/* ── Post Header ──────────────────────────────────────────────── */
+.post-header {
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+.post-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: .65rem;
+    letter-spacing: -.01em;
+}
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    font-size: .84rem;
+    color: var(--gray);
+}
+.meta-sep { color: var(--gray-light); }
+.reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+}
+.post-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+}
+.tag {
+    display: inline-block;
+    padding: .1rem .5rem;
+    font-size: .73rem;
+    font-weight: 500;
+    background: var(--gray-bg);
+    color: var(--gray);
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+}
+a.tag:hover { background: var(--accent); color: #fff; }
+
+/* ── Post Description ─────────────────────────────────────────── */
+.post-description {
+    margin-top: 1.15rem;
+    padding: .9rem 1.2rem;
+    background: var(--accent-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    border-left: 3px solid var(--accent);
+    font-size: .93rem;
+}
+.post-description p { margin: 0; }
+[dir="rtl"] .post-description {
+    border-left: none;
+    border-right: 3px solid var(--accent);
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+
+/* ── Post Body ────────────────────────────────────────────────── */
+.post-body {
+    font-size: 1rem;
+    line-height: 1.85;
+}
+.post-body > * + * { margin-top: 1.2rem; }
+
+/* Headings */
+.post-body h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: .65rem;
+    padding-bottom: .35rem;
+    border-bottom: 2px solid var(--accent);
+}
+.post-body h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: .45rem;
+}
+.post-body h4 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-top: 1.6rem;
+    margin-bottom: .35rem;
+}
+
+/* Links */
+.post-body a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(196,136,58,.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color .15s;
+}
+.post-body a:hover { text-decoration-color: var(--accent); }
+
+/* Lists */
+.post-body ul,
+.post-body ol {
+    padding-inline-start: 1.5rem;
+}
+.post-body li { margin-bottom: .25rem; }
+.post-body li::marker { color: var(--accent); }
+
+/* Strong */
+.post-body strong { font-weight: 600; }
+
+
+/* ── Blockquotes & Arabic Poetry ──────────────────────────────── */
+.post-body blockquote {
+    margin: 1.4rem 0;
+    padding: .75rem 1.2rem;
+    background: var(--gray-bg);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    border-left: 3px solid var(--accent);
+    font-size: .94rem;
+}
+.post-body blockquote p { margin-bottom: 0; }
+.post-body blockquote p + p { margin-top: .45rem; }
+
+/* RTL blockquotes = Arabic poetry / quotes → center-aligned */
+[dir="rtl"] .post-body blockquote {
+    border-left: none;
+    border-right: 3px solid var(--accent);
+    border-radius: var(--radius) 0 0 var(--radius);
+    text-align: center;
+    line-height: 2.1;
+    padding: 1rem 1.4rem;
+}
+
+
+/* ── Tables ───────────────────────────────────────────────────── */
+.post-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.4rem 0;
+    font-size: .88rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.post-body thead {
+    background: var(--ink);
+    color: var(--bg);
+}
+.post-body th {
+    padding: .6rem .85rem;
+    font-weight: 600;
+    text-align: start;
+    white-space: nowrap;
+}
+.post-body td {
+    padding: .55rem .85rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+.post-body tbody tr:nth-child(even) { background: rgba(0,0,0,.018); }
+.post-body tbody tr:hover { background: var(--gray-bg); }
+
+
+/* ── Code ─────────────────────────────────────────────────────── */
+.post-body code {
+    font-family: var(--mono);
+    font-size: .84em;
+    background: var(--gray-bg);
+    padding: .12em .38em;
+    border-radius: 4px;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+.post-body pre {
+    direction: ltr;
+    text-align: left;
+    background: #282c34;
+    border-radius: var(--radius);
+    padding: 1.15rem 1.4rem;
+    overflow-x: auto;
+    margin: 1.4rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+.post-body pre code {
+    background: transparent;
+    padding: 0;
+    font-size: .84rem;
+    line-height: 1.6;
+    color: #abb2bf;
+    border-radius: 0;
+}
+.post-body .hljs { background: transparent !important; }
+
+
+/* ── Images ───────────────────────────────────────────────────── */
+.post-body img {
+    border-radius: var(--radius);
+    margin: 1rem 0;
+}
+
+/* ── Horizontal Rule ──────────────────────────────────────────── */
+.post-body hr {
+    border: none;
+    height: 1px;
+    background: var(--gray-light);
+    margin: 2rem 0;
+}
+
+
+/* ── Citations (ordered lists with links) ─────────────────────── */
+.post-body ol a { word-break: break-all; }
+
+
+/* ── Announcement banner (reusable include) ───────────────────── */
+.alert {
+    padding: .7rem 1.15rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    font-size: .86rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--accent-light);
+    border: 1px solid var(--accent);
+}
+.alert a { color: var(--accent); font-weight: 600; }
+.alert .btn-close {
+    all: unset;
+    cursor: pointer;
+    margin-inline-start: auto;
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: .2rem;
+}
+
+
+/* ================================================================
+   HOME PAGE  (home.html — keeps working on base.html)
+   ================================================================ */
+/* You can keep your existing home.html layout using base.html.
+   The minimal resets above will already apply. If you want to
+   style the home page cards, add rules here prefixed with
+   .home-* or scope them via body class. */
+
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 600px) {
+    html { font-size: 16px; }
+    .post-title { font-size: 1.55rem; }
+    .post-body h2 { font-size: 1.2rem; }
+
+    /* Full-bleed code blocks on mobile */
+    .post-body pre {
+        border-radius: 0;
+        margin-inline: -1.5rem;
+        padding: 1rem;
+    }
+
+    .post-body table { font-size: .8rem; }
+    .post-body th,
+    .post-body td { padding: .4rem .55rem; }
+
+    [dir="rtl"] .post-body blockquote { padding: .7rem .9rem; }
+
+    .blog-index-header h1 { font-size: 1.5rem; }
+}
+
+
+/* ================================================================
+   PRINT
+   ================================================================ */
+@media print {
+    .site-nav, .site-footer, .alert, .reading-time,
+    .tags-cloud { display: none; }
+    .post-body a { color: var(--ink); }
+    .post-body a::after {
+        content: " (" attr(href) ")";
+        font-size: .75em;
+        color: var(--gray);
+    }
+}
+
+/* ── Arabic Poetry (.poem) ────────────────────────────────────── */
+.poem {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1rem;
+    background: var(--gray-bg);
+    border-radius: var(--radius);
+    border-right: 3px solid var(--accent);
+    font-size: 1.05rem;
+    line-height: 2;
+}
+
+[dir="ltr"] .poem {
+    border-right: none;
+    border-left: 3px solid var(--accent);
+}
+
+/* Each bayt (بيت) */
+.poem .line {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.poem .line:last-child {
+    border-bottom: none;
+}
+
+/* Two hemistichs: first right, second left */
+.poem .line p {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.poem .line p:first-child {
+    text-align: right;
+}
+
+.poem .line p:last-child {
+    text-align: left;
+}
+
+/* Single hemistich → centered */
+.poem .line p:only-child {
+    text-align: center;
+    flex: none;
+}

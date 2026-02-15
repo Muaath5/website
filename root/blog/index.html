@@ -1,15 +1,18 @@
 ---
-title: "Blogs list"
-description: "Random blogs"
+title: "Muaath Blog"
+description: "مقالات عشوائية وشروحات لمواضيع مختلفة — Random articles and tutorials"
 lang: en
 layout: blog
 ---
-<!-- TODO: track user last read blog, for new badge on the blogs  -->
 {% include blog_announcement.html %}
-<div class="row">
+
+<div class="blog-index-header">
+    <h1>Blog</h1>
+    <p class="blog-index-subtitle">{{ site.posts | size }} posts</p>
+</div>
+
+<div class="blog-grid">
     {% for blog in site.posts %}
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-        {% include blogbox.html %}
-    </div>
+    {% include blogbox.html %}
     {% endfor %}
 </div>

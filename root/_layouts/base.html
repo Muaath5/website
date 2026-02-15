@@ -1,71 +1,83 @@
 <!DOCTYPE html>
-<html class="h-100" lang="{{ page.lang | default: "en" }}"
-
-{% if page.lang == "ar" %}
-dir="rtl"
-{% else %}
-dir="ltr"
-{% endif %}>
-
+<html lang="{{ page.lang | default: 'en' }}"
+      {% if page.lang == "ar" %}dir="rtl"{% else %}dir="ltr"{% endif %}>
 <head>
     <meta charset="UTF-8">
-
-    {% seo %}
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;display=swap" as="style" type="text/css" crossorigin="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    
-    <!-- Google tag (gtag.js) -->
+    <!-- ===== SEO ===== -->
+    <title>{% if page.title %}{{ page.title }} | {{ site.title | default: "Muaath" }}{% else %}{{ site.title | default: "Muaath" }}{% endif %}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
+    <meta name="author" content="{{ site.author | default: 'Muaath Alqarni' }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | strip_html | truncate: 200 }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title | default: 'Muaath' }}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta property="og:locale" content="{{ page.lang | default: 'en' }}">
+    {% if page.layout == "post" %}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    <meta property="article:author" content="{{ site.author | default: 'Muaath Alqarni' }}">
+    {% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}">{% endfor %}
+    {% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="{{ site.twitter.card | default: 'summary' }}">
+    <meta name="twitter:site" content="@{{ site.twitter.username | default: 'Muaath_dev' }}">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description | strip_html | truncate: 200 }}">
+
+    <!-- JSON-LD (posts only) -->
+    {% if page.layout == "post" %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": {{ page.title | jsonify }},
+        "description": {{ page.description | strip_html | truncate: 200 | jsonify }},
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "author": {"@type": "Person", "name": "{{ site.author | default: 'Muaath Alqarni' }}", "url": "{{ site.url }}"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "{{ page.url | absolute_url }}"}
+        {% if page.tags %},"keywords": "{{ page.tags | join: ', ' }}"{% endif %}
+    }
+    </script>
+    {% endif %}
+
+    <!-- ===== Google Analytics ===== -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-99LECCQ5WV"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-99LECCQ5WV');
     </script>
 
-    
-    <!-- Bootstrap + Icon -->
+    <!-- ===== Fonts: IBM Plex Sans Arabic (bilingual) + IBM Plex Mono (code) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {% if page.lang == "ar" %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
-    {% else %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    {% endif %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <!-- Highlight.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    
+
+    <!-- MathJax (conditional) -->
     {% if page.usemathjax %}
-
-    <script>
-    MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
-    };
-    </script>
+    <script>MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };</script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
     {% endif %}
 
-    <style type="text/css">
-        footer {
-            margin: auto auto 0 auto;
-        }
-    </style>
-    <!-- Google analytics Mabye -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body class="d-flex flex-column h-100">
+<body>
     {{ content }}
-
     <script>hljs.highlightAll();</script>
 </body>
 </html>

@@ -1,5 +1,42 @@
 ---
-title: "Muaath5 Blog Tags"
+title: "Tags"
+description: "Browse blog posts by tag"
+lang: en
 layout: blog
 ---
 
+<div class="blog-index-header">
+    <h1>Tags</h1>
+    <p class="blog-index-subtitle">
+        {% if page.lang == "ar" %}تصفح التدوينات حسب الوسم{% else %}Browse posts by tag{% endif %}
+    </p>
+</div>
+
+<!-- Tag cloud (jump links) -->
+<div class="tags-cloud">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+    <a href="#{{ tag[0] }}" class="tag-chip">
+        {{ tag[0] }}
+        <span class="tag-count">{{ tag[1] | size }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+<!-- Tag sections -->
+{% for tag in sorted_tags %}
+<section class="tag-section" id="{{ tag[0] }}">
+    <h2 class="tag-section-title">
+        <span class="tag-hash">#</span>{{ tag[0] }}
+        <span class="tag-section-count">{{ tag[1] | size }}</span>
+    </h2>
+    <div class="tag-posts">
+        {% for post in tag[1] %}
+        <a href="{{ post.url }}" class="tag-post-item">
+            <span class="tag-post-title">{{ post.title }}</span>
+            <span class="tag-post-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endfor %}
