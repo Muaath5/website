@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جولة الحصان</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --parchment: #f4e8c1;
+  --parchment-dark: #e6d5a8;
+  --ink-brown: #5c3a1e;
+  --ink-dark: #2c1810;
+  --red-accent: #8b1a1a;
+  --gold-accent: #b8860b;
+  --cell-light: #f5e6c8;
+  --cell-dark: #c9a96e;
+  --highlight: rgba(139, 26, 26, 0.3);
+  --valid-move: rgba(34, 120, 50, 0.35);
+  --knight-bg: rgba(139, 26, 26, 0.85);
+  --visited: rgba(92, 58, 30, 0.2);
+  --border-ornate: #8b6914;
+}
+
+body {
+  background: var(--parchment);
+  font-family: 'Amiri', serif;
+  color: var(--ink-dark);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(139, 26, 26, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(184, 134, 11, 0.05) 0%, transparent 50%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 25px 0 15px;
+  border-bottom: 2px solid var(--border-ornate);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.header::after {
+  content: '✦';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--parchment);
+  padding: 0 15px;
+  color: var(--gold-accent);
+  font-size: 18px;
+}
+
+.header h1 {
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 2.4em;
+  color: var(--ink-brown);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.header p {
+  color: var(--red-accent);
+  font-size: 1.1em;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Main Layout */
+.main-layout {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  direction: rtl;
+}
+
+/* Controls Panel - Right side */
+.controls-panel {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.panel-section {
+  background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(244,232,193,0.8));
+  border: 1.5px solid var(--border-ornate);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.panel-section h3 {
+  font-family: 'Reem Kufi', sans-serif;
+  color: var(--red-accent);
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(139, 26, 26, 0.2);
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.option-row label {
+  color: var(--ink-brown);
+  font-weight: 700;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  width: 44px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--cell-dark);
+  border-radius: 11px;
+  transition: 0.3s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  right: 2px;
+  transition: 0.3s;
+}
+
+.toggle input:checked + .toggle-slider {
+  background: var(--red-accent);
+}
+
+.toggle input:checked + .toggle-slider::before {
+  transform: translateX(-22px);
+}
+
+/* Select */
+select {
+  font-family: 'Amiri', serif;
+  padding: 5px 10px;
+  border: 1px solid var(--border-ornate);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.7);
+  color: var(--ink-dark);
+  font-size: 0.9em;
+  cursor: pointer;
+  direction: rtl;
+}
+
+/* Input */
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.input-group input {
+  font-family: 'Amiri', serif;
+  padding: 6px 10px;
+  border: 1.5px solid var(--border-ornate);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.8);
+  color: var(--ink-dark);
+  font-size: 1em;
+  width: 80px;
+  text-align: center;
+  direction: ltr;
+}
+
+.input-group input.arabic-input {
+  direction: rtl;
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+.btn {
+  font-family: 'Reem Kufi', sans-serif;
+  padding: 6px 14px;
+  border: 1.5px solid var(--border-ornate);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.2s;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(201,169,110,0.3));
+  color: var(--ink-brown);
+}
+
+.btn:hover {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(201,169,110,0.5));
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(to bottom, var(--red-accent), #6b1111);
+  color: #f4e8c1;
+  border-color: #6b1111;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #a01e1e, var(--red-accent));
+}
+
+.btn-solve {
+  background: linear-gradient(to bottom, var(--ink-brown), #3d2510);
+  color: #f4e8c1;
+  border-color: #3d2510;
+  width: 100%;
+  padding: 8px;
+  font-size: 0.95em;
+  margin-top: 6px;
+}
+
+.btn-solve:hover {
+  background: linear-gradient(to bottom, #7a4e2a, var(--ink-brown));
+}
+
+.btn-reset {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.95em;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(244,232,193,0.8));
+}
+
+.error-text {
+  color: var(--red-accent);
+  font-size: 0.85em;
+  margin-top: 6px;
+  min-height: 20px;
+  font-weight: 700;
+}
+
+.success-text {
+  color: #2a7a2a;
+  font-size: 0.85em;
+  margin-top: 6px;
+  min-height: 20px;
+  font-weight: 700;
+}
+
+/* Board Area */
+.board-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Row labels - left side (in RTL, left is visually on the left) */
+.row-labels {
+  position: absolute;
+  left: -35px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 0.9em;
+  color: var(--ink-brown);
+  font-weight: 600;
+  width: 30px;
+}
+
+/* Column labels - bottom */
+.col-labels {
+  display: flex;
+  height: 30px;
+  direction: rtl;
+}
+
+.col-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 0.9em;
+  color: var(--ink-brown);
+  font-weight: 600;
+}
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border: 3px solid var(--border-ornate);
+  box-shadow:
+    0 0 0 1px rgba(139, 105, 20, 0.3),
+    0 4px 20px rgba(44, 24, 16, 0.2),
+    inset 0 0 30px rgba(139, 105, 20, 0.1);
+  position: relative;
+  direction: rtl;
+  width: 480px;
+  height: 480px;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Reem Kufi', sans-serif;
+  user-select: none;
+}
+
+.cell.light { background: var(--cell-light); }
+.cell.dark { background: var(--cell-dark); }
+
+.cell.visited {
+  background-image: linear-gradient(135deg, rgba(92,58,30,0.15), rgba(92,58,30,0.25));
+}
+
+.cell.valid-move {
+  cursor: pointer;
+}
+
+.cell.valid-move::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--valid-move);
+  border: 2px solid rgba(34, 120, 50, 0.5);
+  z-index: 2;
+}
+
+.cell.current {
+  z-index: 3;
+}
+
+.cell-name {
+  position: absolute;
+  bottom: 1px;
+  left: 2px;
+  font-size: 0.55em;
+  color: rgba(92, 58, 30, 0.6);
+  font-family: 'Reem Kufi', sans-serif;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.move-number {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--ink-brown);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.knight-icon {
+  font-size: 1.8em;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+  animation: knightPlace 0.3s ease-out;
+}
+
+@keyframes knightPlace {
+  0% { transform: scale(0.5) translateY(-10px); opacity: 0.5; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Moves Panel - Left side */
+.moves-panel {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.moves-list-container {
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid rgba(139, 105, 20, 0.3);
+  border-radius: 5px;
+  background: rgba(255,255,255,0.4);
+  padding: 6px;
+}
+
+.moves-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.moves-list-container::-webkit-scrollbar-track {
+  background: rgba(201,169,110,0.2);
+  border-radius: 3px;
+}
+
+.moves-list-container::-webkit-scrollbar-thumb {
+  background: var(--cell-dark);
+  border-radius: 3px;
+}
+
+.move-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.15s;
+  direction: rtl;
+}
+
+.move-item:hover {
+  background: rgba(139, 26, 26, 0.1);
+}
+
+.move-item.active {
+  background: rgba(139, 26, 26, 0.15);
+  font-weight: 700;
+}
+
+.move-item.future {
+  opacity: 0.4;
+}
+
+.move-num {
+  color: var(--red-accent);
+  font-weight: 700;
+  min-width: 25px;
+  text-align: center;
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+.move-cell {
+  color: var(--ink-brown);
+  font-family: 'Reem Kufi', sans-serif;
+}
+
+.move-arrow {
+  color: var(--gold-accent);
+  font-size: 0.8em;
+}
+
+.undo-redo-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.undo-redo-bar .btn {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9em;
+  padding: 6px;
+}
+
+/* Status bar */
+.status-bar {
+  text-align: center;
+  margin-top: 12px;
+  padding: 8px;
+  font-size: 1em;
+  color: var(--ink-brown);
+  border-top: 1px solid rgba(139, 105, 20, 0.3);
+}
+
+.status-bar .count {
+  font-weight: 700;
+  color: var(--red-accent);
+}
+
+/* Ornamental Divider */
+.ornament {
+  text-align: center;
+  color: var(--gold-accent);
+  font-size: 1.2em;
+  letter-spacing: 10px;
+  margin: 8px 0;
+}
+
+/* Complete overlay */
+.complete-banner {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--parchment), var(--parchment-dark));
+  border: 3px solid var(--gold-accent);
+  border-radius: 15px;
+  padding: 30px 50px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  animation: bannerIn 0.5s ease-out;
+}
+
+.complete-banner.show { display: block; }
+
+@keyframes bannerIn {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.complete-banner h2 {
+  font-family: 'Reem Kufi', sans-serif;
+  color: var(--red-accent);
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.complete-banner p {
+  color: var(--ink-brown);
+  font-size: 1.1em;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+}
+
+.overlay.show { display: block; }
+
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .controls-panel, .moves-panel {
+    width: 100%;
+    max-width: 480px;
+  }
+  .board { width: 360px; height: 360px; }
+  .cell { width: 45px; height: 45px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>جولة الحصان</h1>
+    <p>نزهة الفارس على رقعة الشطرنج</p>
+  </div>
+
+  <div class="main-layout">
+    <!-- Controls Panel (Right in RTL) -->
+    <div class="controls-panel">
+      <div class="panel-section">
+        <h3>⚙ الإعدادات</h3>
+        <div class="option-row">
+          <label>نوع الترميز</label>
+          <select id="notationType" onchange="handleNotationChange()">
+            <option value="arabic">عربي</option>
+            <option value="modern">Modern</option>
+          </select>
+        </div>
+        <div class="option-row">
+          <label>أسماء الخانات</label>
+          <label class="toggle">
+            <input type="checkbox" id="showCellNames" onchange="renderBoard()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>♞ موقع البداية</h3>
+        <div class="input-group">
+          <input type="text" id="startPosInput" placeholder="يأ" maxlength="3" class="arabic-input">
+          <button class="btn btn-primary" onclick="setStartPosition()">ضع</button>
+        </div>
+        <div id="startError" class="error-text"></div>
+      </div>
+
+      <div class="panel-section">
+        <h3>↳ أدخل نقلة</h3>
+        <div class="input-group">
+          <input type="text" id="moveInput" placeholder="كب" maxlength="3" class="arabic-input">
+          <button class="btn btn-primary" onclick="submitMove()">انقل</button>
+        </div>
+        <div id="moveError" class="error-text"></div>
+      </div>
+
+      <div class="panel-section">
+        <button class="btn btn-solve" onclick="solveFromHere()">🔍 حل من هنا</button>
+        <div id="solveError" class="error-text"></div>
+        <div id="solveSuccess" class="success-text"></div>
+        <div class="ornament">✦ ✦ ✦</div>
+        <button class="btn btn-reset" onclick="resetBoard()">🔄 إعادة تعيين</button>
+      </div>
+    </div>
+
+    <!-- Board -->
+    <div class="board-area">
+      <div class="board-wrapper">
+        <div class="row-labels" id="rowLabels"></div>
+        <div class="board" id="board"></div>
+        <div class="col-labels" id="colLabels"></div>
+      </div>
+      <div class="status-bar">
+        عدد النقلات: <span class="count" id="moveCount">0</span> / <span class="count">64</span>
+      </div>
+    </div>
+
+    <!-- Moves Panel (Left in RTL) -->
+    <div class="moves-panel">
+      <div class="panel-section">
+        <h3>📜 سجل النقلات</h3>
+        <div class="moves-list-container" id="movesList"></div>
+        <div class="undo-redo-bar">
+          <button class="btn" onclick="redo()" id="redoBtn" disabled>إعادة ↩</button>
+          <button class="btn" onclick="undo()" id="undoBtn" disabled>تراجع ↪</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Complete Banner -->
+<div class="overlay" id="overlay" onclick="closeBanner()"></div>
+<div class="complete-banner" id="completeBanner">
+  <h2>🎉 أحسنت!</h2>
+  <p>أتممت جولة الحصان بنجاح</p>
+  <br>
+  <button class="btn btn-primary" onclick="closeBanner()">حسناً</button>
+</div>
+
+<script>
+// ==================== DATA & STATE ====================
+
+const ARABIC_COLS = ['أ', 'ب', 'ج', 'د', 'ه', 'و', 'ز', 'ح'];
+const ARABIC_ROWS = ['ي', 'ك', 'ل', 'م', 'ڡ', 'ر', 'س', 'ت'];
+const MODERN_COLS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+const MODERN_ROWS = ['1', '2', '3', '4', '5', '6', '7', '8'];
+
+// Alternate accepted chars for Arabic rows
+const ARABIC_ROW_ALIASES = {
+  'ق': 4, 'ف': 4, // same as ڡ (index 4)
+  'ش': 6,           // same as س (index 6)
+};
+
+// Knight moves
+const KNIGHT_MOVES = [
+  [-2, -1], [-2, 1], [-1, -2], [-1, 2],
+  [1, -2], [1, 2], [2, -1], [2, 1]
+];
+
+let state = {
+  // Board: 8x8, row 0 = bottom (rank 1), col 0 = rightmost (col أ / a)
+  // In our internal representation: board[row][col]
+  // row 0 = rank 1 (bottom), row 7 = rank 8 (top)
+  // col 0 = file a/أ (rightmost in RTL), col 7 = file h/ح (leftmost in RTL)
+  moves: [],        // array of {row, col} — the sequence of knight positions
+  currentIndex: -1, // which move we're viewing (-1 = no moves yet)
+  redoStack: [],    // moves after currentIndex that were undone
+  notation: 'arabic',
+  showNames: false,
+};
+
+// ==================== NOTATION ====================
+
+function getNotation() {
+  return document.getElementById('notationType').value;
+}
+
+function cellName(row, col) {
+  const notation = getNotation();
+  if (notation === 'arabic') {
+    return ARABIC_ROWS[row] + ARABIC_COLS[col];
+  } else {
+    return MODERN_COLS[col] + MODERN_ROWS[row];
+  }
+}
+
+function parseCell(text) {
+  text = text.trim();
+  const notation = getNotation();
+
+  if (notation === 'arabic') {
+    if (text.length < 2) return null;
+    const rowChar = text[0];
+    const colChar = text[1];
+
+    let row = ARABIC_ROWS.indexOf(rowChar);
+    if (row === -1 && ARABIC_ROW_ALIASES[rowChar] !== undefined) {
+      row = ARABIC_ROW_ALIASES[rowChar];
+    }
+    const col = ARABIC_COLS.indexOf(colChar);
+    if (row === -1 || col === -1) return null;
+    return { row, col };
+  } else {
+    if (text.length < 2) return null;
+    const colChar = text[0].toLowerCase();
+    const rowChar = text[1];
+
+    const col = MODERN_COLS.indexOf(colChar);
+    const row = MODERN_ROWS.indexOf(rowChar);
+    if (row === -1 || col === -1) return null;
+    return { row, col };
+  }
+}
+
+// ==================== BOARD RENDERING ====================
+
+function renderBoard() {
+  const board = document.getElementById('board');
+  const showNames = document.getElementById('showCellNames').checked;
+  board.innerHTML = '';
+
+  // Build visited set and move number map up to currentIndex
+  const visited = new Set();
+  const moveNumbers = {};
+  let currentPos = null;
+
+  for (let i = 0; i <= state.currentIndex; i++) {
+    const m = state.moves[i];
+    const key = m.row + ',' + m.col;
+    visited.add(key);
+    moveNumbers[key] = i + 1;
+    if (i === state.currentIndex) currentPos = m;
+  }
+
+  // Valid moves from current position
+  const validMoves = new Set();
+  if (currentPos) {
+    for (const [dr, dc] of KNIGHT_MOVES) {
+      const nr = currentPos.row + dr;
+      const nc = currentPos.col + dc;
+      if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && !visited.has(nr + ',' + nc)) {
+        validMoves.add(nr + ',' + nc);
+      }
+    }
+  }
+
+  // Render cells: top row (row 7) to bottom row (row 0), RTL cols (col 0 at right)
+  for (let displayRow = 0; displayRow < 8; displayRow++) {
+    const row = 7 - displayRow; // internal row
+    for (let displayCol = 0; displayCol < 8; displayCol++) {
+      const col = displayCol; // col 0 is rightmost in RTL grid
+      const cell = document.createElement('div');
+      const isLight = (row + col) % 2 === 0;
+      cell.className = 'cell ' + (isLight ? 'light' : 'dark');
+
+      const key = row + ',' + col;
+
+      if (visited.has(key)) {
+        cell.classList.add('visited');
+      }
+
+      if (validMoves.has(key)) {
+        cell.classList.add('valid-move');
+      }
+
+      if (currentPos && currentPos.row === row && currentPos.col === col) {
+        cell.classList.add('current');
+      }
+
+      // Cell content
+      if (currentPos && currentPos.row === row && currentPos.col === col) {
+        const knight = document.createElement('span');
+        knight.className = 'knight-icon';
+        knight.textContent = '♞';
+        cell.appendChild(knight);
+      } else if (visited.has(key) && moveNumbers[key]) {
+        const num = document.createElement('span');
+        num.className = 'move-number';
+        num.textContent = moveNumbers[key];
+        cell.appendChild(num);
+      }
+
+      // Cell name label
+      if (showNames) {
+        const nameEl = document.createElement('span');
+        nameEl.className = 'cell-name';
+        nameEl.textContent = cellName(row, col);
+        cell.appendChild(nameEl);
+      }
+
+      // Click handler
+      cell.addEventListener('click', () => handleCellClick(row, col));
+
+      board.appendChild(cell);
+    }
+  }
+
+  renderLabels();
+  renderMovesList();
+  updateButtons();
+  updateMoveCount();
+}
+
+function renderLabels() {
+  const notation = getNotation();
+  const rowLabels = document.getElementById('rowLabels');
+  const colLabels = document.getElementById('colLabels');
+
+  rowLabels.innerHTML = '';
+  for (let displayRow = 0; displayRow < 8; displayRow++) {
+    const row = 7 - displayRow;
+    const label = document.createElement('div');
+    label.className = 'row-label';
+    label.textContent = notation === 'arabic' ? ARABIC_ROWS[row] : MODERN_ROWS[row];
+    if (notation === 'modern') label.style.fontFamily = "'Amiri', serif";
+    else label.style.fontFamily = "'Reem Kufi', sans-serif";
+    rowLabels.appendChild(label);
+  }
+
+  colLabels.innerHTML = '';
+  for (let col = 0; col < 8; col++) {
+    const label = document.createElement('div');
+    label.className = 'col-label';
+    label.textContent = notation === 'arabic' ? ARABIC_COLS[col] : MODERN_COLS[col];
+    if (notation === 'modern') label.style.fontFamily = "'Amiri', serif";
+    else label.style.fontFamily = "'Reem Kufi', sans-serif";
+    colLabels.appendChild(label);
+  }
+}
+
+function renderMovesList() {
+  const list = document.getElementById('movesList');
+  list.innerHTML = '';
+
+  for (let i = 0; i < state.moves.length; i++) {
+    const m = state.moves[i];
+    const item = document.createElement('div');
+    item.className = 'move-item';
+    if (i === state.currentIndex) item.classList.add('active');
+    if (i > state.currentIndex) item.classList.add('future');
+
+    const num = document.createElement('span');
+    num.className = 'move-num';
+    num.textContent = i + 1;
+
+    const arrow = document.createElement('span');
+    arrow.className = 'move-arrow';
+    arrow.textContent = i === 0 ? '⬤' : '←';
+
+    const name = document.createElement('span');
+    name.className = 'move-cell';
+    name.textContent = cellName(m.row, m.col);
+
+    item.appendChild(num);
+    item.appendChild(arrow);
+    item.appendChild(name);
+
+    item.addEventListener('click', () => goToMove(i));
+    list.appendChild(item);
+  }
+
+  // Auto scroll to active
+  const active = list.querySelector('.active');
+  if (active) active.scrollIntoView({ block: 'nearest' });
+}
+
+function updateButtons() {
+  document.getElementById('undoBtn').disabled = state.currentIndex < 0;
+  document.getElementById('redoBtn').disabled = state.currentIndex >= state.moves.length - 1;
+}
+
+function updateMoveCount() {
+  document.getElementById('moveCount').textContent = state.currentIndex + 1;
+}
+
+// ==================== INTERACTIONS ====================
+
+function handleCellClick(row, col) {
+  clearErrors();
+
+  // If no moves yet, this is placing the starting position
+  if (state.currentIndex === -1 && state.moves.length === 0) {
+    placeKnight(row, col);
+    return;
+  }
+
+  // If we have a current position, check if this is a valid knight move
+  if (state.currentIndex >= 0) {
+    const curr = state.moves[state.currentIndex];
+    const key = row + ',' + col;
+
+    // Check visited
+    const visited = new Set();
+    for (let i = 0; i <= state.currentIndex; i++) {
+      visited.add(state.moves[i].row + ',' + state.moves[i].col);
+    }
+    if (visited.has(key)) return;
+
+    // Check valid knight move
+    const dr = Math.abs(row - curr.row);
+    const dc = Math.abs(col - curr.col);
+    if ((dr === 2 && dc === 1) || (dr === 1 && dc === 2)) {
+      makeMove(row, col);
+    }
+  }
+}
+
+function placeKnight(row, col) {
+  // Remove any future moves
+  state.moves = [];
+  state.moves.push({ row, col });
+  state.currentIndex = 0;
+  state.redoStack = [];
+  renderBoard();
+  checkComplete();
+}
+
+function makeMove(row, col) {
+  // If we are in the middle of move list, truncate future
+  if (state.currentIndex < state.moves.length - 1) {
+    state.moves = state.moves.slice(0, state.currentIndex + 1);
+  }
+  state.moves.push({ row, col });
+  state.currentIndex = state.moves.length - 1;
+  renderBoard();
+  checkComplete();
+}
+
+function setStartPosition() {
+  clearErrors();
+  const input = document.getElementById('startPosInput').value;
+  const pos = parseCell(input);
+  if (!pos) {
+    document.getElementById('startError').textContent = 'خانة غير صالحة!';
+    return;
+  }
+  placeKnight(pos.row, pos.col);
+  document.getElementById('startPosInput').value = '';
+}
+
+function submitMove() {
+  clearErrors();
+  if (state.currentIndex < 0) {
+    document.getElementById('moveError').textContent = 'ضع الحصان أولاً!';
+    return;
+  }
+
+  const input = document.getElementById('moveInput').value;
+  const pos = parseCell(input);
+  if (!pos) {
+    document.getElementById('moveError').textContent = 'خانة غير صالحة!';
+    return;
+  }
+
+  const curr = state.moves[state.currentIndex];
+  const dr = Math.abs(pos.row - curr.row);
+  const dc = Math.abs(pos.col - curr.col);
+
+  if (!((dr === 2 && dc === 1) || (dr === 1 && dc === 2))) {
+    document.getElementById('moveError').textContent = 'نقلة غير صحيحة للحصان!';
+    return;
+  }
+
+  // Check visited
+  const visited = new Set();
+  for (let i = 0; i <= state.currentIndex; i++) {
+    visited.add(state.moves[i].row + ',' + state.moves[i].col);
+  }
+  if (visited.has(pos.row + ',' + pos.col)) {
+    document.getElementById('moveError').textContent = 'هذه الخانة تمت زيارتها!';
+    return;
+  }
+
+  makeMove(pos.row, pos.col);
+  document.getElementById('moveInput').value = '';
+}
+
+function undo() {
+  if (state.currentIndex < 0) return;
+  // Just move the index back, keep the moves
+  state.currentIndex--;
+  renderBoard();
+}
+
+function redo() {
+  if (state.currentIndex >= state.moves.length - 1) return;
+  state.currentIndex++;
+  renderBoard();
+}
+
+function goToMove(index) {
+  if (index >= 0 && index < state.moves.length) {
+    state.currentIndex = index;
+    renderBoard();
+  }
+}
+
+function resetBoard() {
+  state.moves = [];
+  state.currentIndex = -1;
+  state.redoStack = [];
+  clearErrors();
+  renderBoard();
+}
+
+function handleNotationChange() {
+  const notation = getNotation();
+  const startInput = document.getElementById('startPosInput');
+  const moveInput = document.getElementById('moveInput');
+
+  if (notation === 'arabic') {
+    startInput.className = 'arabic-input';
+    startInput.placeholder = 'يأ';
+    startInput.dir = 'rtl';
+    moveInput.className = 'arabic-input';
+    moveInput.placeholder = 'كب';
+    moveInput.dir = 'rtl';
+  } else {
+    startInput.className = '';
+    startInput.placeholder = 'a1';
+    startInput.dir = 'ltr';
+    moveInput.className = '';
+    moveInput.placeholder = 'b3';
+    moveInput.dir = 'ltr';
+  }
+
+  renderBoard();
+}
+
+function clearErrors() {
+  document.getElementById('startError').textContent = '';
+  document.getElementById('moveError').textContent = '';
+  document.getElementById('solveError').textContent = '';
+  document.getElementById('solveSuccess').textContent = '';
+}
+
+function checkComplete() {
+  if (state.currentIndex === 63) {
+    document.getElementById('completeBanner').classList.add('show');
+    document.getElementById('overlay').classList.add('show');
+  }
+}
+
+function closeBanner() {
+  document.getElementById('completeBanner').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// ==================== SOLVER (Warnsdorff's heuristic) ====================
+
+function solveFromHere() {
+  clearErrors();
+  if (state.currentIndex < 0) {
+    document.getElementById('solveError').textContent = 'ضع الحصان أولاً!';
+    return;
+  }
+
+  document.getElementById('solveSuccess').textContent = 'جاري البحث...';
+
+  // Build visited set
+  const visited = Array.from({ length: 8 }, () => Array(8).fill(false));
+  const path = [];
+  for (let i = 0; i <= state.currentIndex; i++) {
+    const m = state.moves[i];
+    visited[m.row][m.col] = true;
+    path.push({ row: m.row, col: m.col });
+  }
+
+  const totalVisited = state.currentIndex + 1;
+  const remaining = 64 - totalVisited;
+
+  if (remaining === 0) {
+    document.getElementById('solveSuccess').textContent = 'الجولة مكتملة بالفعل!';
+    return;
+  }
+
+  // Use Warnsdorff heuristic with backtracking (limited)
+  const result = warnsdorffSolve(visited, path, remaining);
+
+  if (result) {
+    // Apply the solution moves
+    // Truncate any future moves
+    state.moves = state.moves.slice(0, state.currentIndex + 1);
+    for (let i = state.currentIndex + 1; i < result.length; i++) {
+      state.moves.push(result[i]);
+    }
+    state.currentIndex = state.moves.length - 1;
+    document.getElementById('solveSuccess').textContent = 'تم إيجاد حل! ✓';
+    document.getElementById('solveError').textContent = '';
+    renderBoard();
+    checkComplete();
+  } else {
+    document.getElementById('solveError').textContent = 'لا يوجد حل من هذا الوضع!';
+    document.getElementById('solveSuccess').textContent = '';
+  }
+}
+
+function warnsdorffSolve(visited, path, remaining) {
+  if (remaining === 0) return [...path];
+
+  const curr = path[path.length - 1];
+  const neighbors = [];
+
+  for (const [dr, dc] of KNIGHT_MOVES) {
+    const nr = curr.row + dr;
+    const nc = curr.col + dc;
+    if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8 && !visited[nr][nc]) {
+      // Count degree (Warnsdorff)
+      let degree = 0;
+      for (const [dr2, dc2] of KNIGHT_MOVES) {
+        const nnr = nr + dr2;
+        const nnc = nc + dc2;
+        if (nnr >= 0 && nnr < 8 && nnc >= 0 && nnc < 8 && !visited[nnr][nnc]) {
+          degree++;
+        }
+      }
+      neighbors.push({ row: nr, col: nc, degree });
+    }
+  }
+
+  // Sort by Warnsdorff (lowest degree first)
+  neighbors.sort((a, b) => a.degree - b.degree);
+
+  for (const next of neighbors) {
+    visited[next.row][next.col] = true;
+    path.push({ row: next.row, col: next.col });
+
+    const result = warnsdorffSolve(visited, path, remaining - 1);
+    if (result) return result;
+
+    path.pop();
+    visited[next.row][next.col] = false;
+  }
+
+  return null;
+}
+
+// ==================== KEYBOARD ====================
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const startInput = document.getElementById('startPosInput');
+    const moveInput = document.getElementById('moveInput');
+    if (document.activeElement === startInput) {
+      setStartPosition();
+    } else if (document.activeElement === moveInput) {
+      submitMove();
+    }
+  }
+  if (e.ctrlKey && e.key === 'z') {
+    e.preventDefault();
+    undo();
+  }
+  if (e.ctrlKey && e.key === 'y') {
+    e.preventDefault();
+    redo();
+  }
+});
+
+// ==================== INIT ====================
+renderBoard();
+</script>
+
+</body>
+</html>
