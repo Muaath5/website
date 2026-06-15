@@ -5,8 +5,9 @@ tags: ["c++", "resource", "cp"]
 lang: en
 usemathjax: true
 updates_history:
-    05_17: "Inital write"
-    06_10: "Added external links, completed content and published"
+    25_05_17: "Inital write"
+    25_06_10: "Added external links, completed content and published"
+    26_06_15: "Fix Latex"
 ---
 
 ## How does random work?
@@ -49,7 +50,7 @@ There are other easy algorithms like [Xorshift](https://en.wikipedia.org/wiki/Xo
 
 ## About default `rand()` problems
 ### Low range of values
-This is bounded by [`RAND_MAX` macro](https://en.cppreference.com/w/cpp/numeric/random/RAND_MAX.html), which is usually $2^15$ in 32-bit machines, and $2^31$ in 64-bit machines.
+This is bounded by [`RAND_MAX` macro](https://en.cppreference.com/w/cpp/numeric/random/RAND_MAX.html), which is usually $2^{15}$ in 32-bit machines, and $2^{31}$ in 64-bit machines.
 
 ### The fixed seed
 You can use [`void srand(unsigned seed)` function](https://en.cppreference.com/w/cpp/numeric/random/srand.html), default seed is $1$, but you must put an unpredictable seed.
