@@ -56,7 +56,7 @@
             "name": "Falling Sambosas",
             "description": "A browser game based on a problem"
         },
-        "status": "paused",
+        "status": "archived",
         "links": {
             "github": "Muaath5/FallingSambosas",
             "url": "https://sambosas.muaath.dev/"
@@ -72,10 +72,41 @@
             "name": "Deobfuscate CodeHashifier",
             "description": "Open source website that deobfuscates C++ a type of codes"
         },
-        "status": "archived",
+        "status": "finished",
         "links": {
             "github": "Muaath5/deobfuscate_codehashifier",
             "url": "https://deobfuscate.muaath.dev/"
+        }
+    },
+    {
+        "start_date": "2026/02/03",
+        "ar": {
+            "name": "أوقات الصلاة في البترول",
+            "description": "موقع بسيط يحسب أوقات الصلاة في جامعة الملك فهد للبترول والمعادن بتصميم وألوان تطابق الهوية البصرية للجامعة"
+        },
+        "en": {
+            "name": "KFUPM Prayer Times",
+            "description": "Simple website that calculates prayer times in King Fahd University of Petroleum & Minerals (KFUPM) with a design matching visual-code of the university"
+        },
+        "status": "finished",
+        "links": {
+            "github": "Muaath5/kfupm_prayer_times",
+            "url": "https://kfupm.muaath.dev/"
+        }
+    },
+    {
+        "start_date": "2026/07/05",
+        "ar": {
+            "name": "محلل رسائل البنوك",
+            "description": "أداة تقنية مالية شخصية تحلل رسائل SMS من البنوك بصيغة JSON/CSV للدخل والمصروفات"
+        },
+        "en": {
+            "name": "Bank SMS Parser",
+            "description": "Personal fintech tool that parses SMS messages from bank contacts then outputs JSON/CSV format for your income and spending"
+        },
+        "status": "wip",
+        "links": {
+            "github": "Muaath5/bank_sms_parser"
         }
     }
 ]
