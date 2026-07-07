@@ -9,4 +9,4 @@ Also [my blog](https://muaath.dev/blog).
 python build.py && bundle exec jekyll serve -s ./root
 ```
 
-Parity: 0
+Parity: 1
