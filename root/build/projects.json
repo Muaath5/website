@@ -108,5 +108,21 @@
         "links": {
             "github": "Muaath5/bank_sms_parser"
         }
+    },
+    {
+        "start_date": "2026/07/08",
+        "ar": {
+            "name": "معرض الخطوط العربية",
+            "description": "نخبة الخطوط العربية بصيغة سهلة الاستخدام بصيغ TTF/OTF/WOFF2"
+        },
+        "en": {
+            "name": "Arabic Fonts Gallary",
+            "description": "Selected collection of free Arabic fonts easily downloadable with formats TTF/OTF/WOFF2"
+        },
+        "status": "wip",
+        "links": {
+            "github": "Muaath5/arabic_fonts",
+            "url": "https://fonts.muaath.dev/"
+        }
     }
 ]
