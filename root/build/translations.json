@@ -1,0 +1,24 @@
+{
+    "ar": {
+        "title": "معاذ القرني",
+        "subtitle": "موقع شخصي",
+        "description": "<li>طالب علوم حاسب</li>\n<li>عضو سابق في المنتخب السعودي للمعلوماتية/الذكاء الاصطاعي</li>\n<li>مطور ويب</li>",
+        "blog": "المدونة",
+        "blog_description": "مختلف الشروحات والمقالات لمواضيع عشوائية",
+        "projects": "المشاريع",
+        "lastest_post": "آخر مقالة:",
+        "footer": "بُرمج باستعمال <a href=\"https://muaath.dev/blog/mustatic\">MuStatic</a>",
+        "welcome": "حياك"
+    },
+    "en": {
+        "title": "Muaath Alqarni",
+        "subtitle": "Personal website",
+        "description": "<li>Computer Science student</li>\n<li>Past Saudi Informatics/AI team member</li>\n<li>Web developer</li>",
+        "blog": "Blog",
+        "blog_description": "Random articles and tutorials for different topics",
+        "projects": "Projects",
+        "lastest_post": "Latest post:",
+        "footer": "Built using <a href=\"https://muaath.dev/blog/mustatic\">MuStatic</a>",
+        "welcome": "Welcome"
+    }
+}

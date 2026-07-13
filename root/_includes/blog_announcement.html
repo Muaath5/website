@@ -1,7 +1,16 @@
 <div style="display: none" id="announcement" class="alert alert-primary alert-dismissible fade show">
     <i class="bi-info-circle m-1"></i>
-    مقالة حديثة <a href="https://muaath.dev/blog/arabian_chess/">لتاريخ الشطرنج العربي</a>
-    <button id="closeAnnouncement" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+    <span>
+        {% if page.lang == "ar" %}
+        مقالة حديثة <a href="https://muaath.dev/blog/arabian_chess">لتاريخ الشطرنج العربي</a>
+        {% else %}
+        Check a new <a href="https://muaath.dev/blog/arabian_chess">Arabic Chess History (written in Arabic)</a>
+        {% endif %}
+    </span>
+
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+    <button id="closeAnnouncement" type="button" class="btn-close" aria-label="Close"><i class="bi-x"></i></button>
 </div>
 <script>
     const annId = 1;
@@ -12,7 +21,7 @@
             date.setTime(date.getTime() + (days*24*60*60*1000));
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        document.cookie = name + "=" + (value ?? "") + expires + "; path=/";
     }
     function getCookie(name) {
         var nameEQ = name + "=";
@@ -30,11 +39,11 @@
 
     const closeAnnouncementBtn = document.querySelector('#closeAnnouncement');
     const announcementDiv = document.querySelector('#announcement');
-    if (getCookie('blog_announcementClosed') <= annId)
+    if (getCookie('last_blog_id') < annId)
         announcementDiv.style.display = 'block';
 
     closeAnnouncementBtn.addEventListener('click', function() {
         announcementDiv.style.display = 'none';
-        setCookie('blog_announcementClosed', true, 90);
+        setCookie('last_blog_id', annId, 90);
     });
 </script>

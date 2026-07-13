@@ -1,32 +1,81 @@
 [
     {
-        "start_date": "2021/10/04",
+        "start_date": "2026/07/08",
         "ar": {
-            "name": "TDLibBinaries",
-            "description": "ملفات مكتبة TDLib مع سكربتات للـcompilation"
+            "name": "معرض الخطوط العربية",
+            "description": "نخبة الخطوط العربية بصيغة سهلة الاستخدام بصيغ TTF/OTF/WOFF2"
         },
         "en": {
-            "name": "TDLibBinaries",
-            "description": "TDLib precompiled binaries with scripts for automation"
+            "name": "Arabic Fonts Gallary",
+            "description": "Selected collection of free Arabic fonts easily downloadable with formats TTF/OTF/WOFF2"
         },
-        "status": "archived",
+        "status": "wip",
         "links": {
-            "github": "Muaath5/TDLibBinaries"
+            "github": "Muaath5/arabic_fonts",
+            "url": "https://fonts.muaath.dev/"
         }
     },
     {
-        "start_date": "2021/07/24",
+        "start_date": "2026/07/05",
         "ar": {
-            "name": "Simple Bot API",
-            "description": "مكتبة PHP سهلة ومتوافقة مع جميع إصدارات Bot API للتيليجرام"
+            "name": "محلل رسائل البنوك",
+            "description": "أداة تقنية مالية شخصية تحلل رسائل SMS من البنوك بصيغة JSON/CSV للدخل والمصروفات"
         },
         "en": {
-            "name": "Simple Bot API",
-            "description": "Telegram Bot API library in PHP compatible with all versions"
+            "name": "Bank SMS Parser",
+            "description": "Personal fintech tool that parses SMS messages from bank contacts then outputs JSON/CSV format for your income and spending"
+        },
+        "status": "wip",
+        "links": {
+            "github": "Muaath5/bank_sms_parser"
+        }
+    },
+    {
+        "start_date": "2026/02/03",
+        "ar": {
+            "name": "أوقات الصلاة في البترول",
+            "description": "موقع بسيط يحسب أوقات الصلاة في جامعة الملك فهد للبترول والمعادن بتصميم وألوان تطابق الهوية البصرية للجامعة"
+        },
+        "en": {
+            "name": "KFUPM Prayer Times",
+            "description": "Simple website that calculates prayer times in King Fahd University of Petroleum & Minerals (KFUPM) with a design matching visual-code of the university"
+        },
+        "status": "finished",
+        "links": {
+            "github": "Muaath5/kfupm_prayer_times",
+            "url": "https://kfupm.muaath.dev/"
+        }
+    },
+    {
+        "start_date": "2025/04/24",
+        "ar": {
+            "name": "Deobfuscate CodeHashifier",
+            "description": "موقع مفتوح المصدر يفك تشويش برامج C++ المشوشة بأحد البرامج"
+        },
+        "en": {
+            "name": "Deobfuscate CodeHashifier",
+            "description": "Open source website that deobfuscates C++ a type of codes"
+        },
+        "status": "finished",
+        "links": {
+            "github": "Muaath5/deobfuscate_codehashifier",
+            "url": "https://deobfuscate.muaath.dev/"
+        }
+    },
+    {
+        "start_date": "2024/04/12",
+        "ar": {
+            "name": "السمبوسات المتساقطة",
+            "description": "لعبة على المتصفح مبنية على أحد المسائل"
+        },
+        "en": {
+            "name": "Falling Sambosas",
+            "description": "A browser game based on a problem"
         },
         "status": "archived",
         "links": {
-            "github": "Muaath5/SimpleBotAPI"
+            "github": "Muaath5/FallingSambosas",
+            "url": "https://sambosas.muaath.dev/"
         }
     },
     {
@@ -47,82 +96,33 @@
         }
     },
     {
-        "start_date": "2024/04/12",
+        "start_date": "2021/07/24",
         "ar": {
-            "name": "السمبوسات المتساقطة",
-            "description": "لعبة على المتصفح مبنية على أحد المسائل"
+            "name": "Simple Bot API",
+            "description": "مكتبة PHP سهلة ومتوافقة مع جميع إصدارات Bot API للتيليجرام"
         },
         "en": {
-            "name": "Falling Sambosas",
-            "description": "A browser game based on a problem"
+            "name": "Simple Bot API",
+            "description": "Telegram Bot API library in PHP compatible with all versions"
         },
         "status": "archived",
         "links": {
-            "github": "Muaath5/FallingSambosas",
-            "url": "https://sambosas.muaath.dev/"
+            "github": "Muaath5/SimpleBotAPI"
         }
     },
     {
-        "start_date": "2025/04/24",
+        "start_date": "2021/10/04",
         "ar": {
-            "name": "Deobfuscate CodeHashifier",
-            "description": "موقع مفتوح المصدر يفك تشويش برامج C++ المشوشة بأحد البرامج"
+            "name": "TDLibBinaries",
+            "description": "ملفات مكتبة TDLib مع سكربتات للـcompilation"
         },
         "en": {
-            "name": "Deobfuscate CodeHashifier",
-            "description": "Open source website that deobfuscates C++ a type of codes"
+            "name": "TDLibBinaries",
+            "description": "TDLib precompiled binaries with scripts for automation"
         },
-        "status": "finished",
+        "status": "archived",
         "links": {
-            "github": "Muaath5/deobfuscate_codehashifier",
-            "url": "https://deobfuscate.muaath.dev/"
-        }
-    },
-    {
-        "start_date": "2026/02/03",
-        "ar": {
-            "name": "أوقات الصلاة في البترول",
-            "description": "موقع بسيط يحسب أوقات الصلاة في جامعة الملك فهد للبترول والمعادن بتصميم وألوان تطابق الهوية البصرية للجامعة"
-        },
-        "en": {
-            "name": "KFUPM Prayer Times",
-            "description": "Simple website that calculates prayer times in King Fahd University of Petroleum & Minerals (KFUPM) with a design matching visual-code of the university"
-        },
-        "status": "finished",
-        "links": {
-            "github": "Muaath5/kfupm_prayer_times",
-            "url": "https://kfupm.muaath.dev/"
-        }
-    },
-    {
-        "start_date": "2026/07/05",
-        "ar": {
-            "name": "محلل رسائل البنوك",
-            "description": "أداة تقنية مالية شخصية تحلل رسائل SMS من البنوك بصيغة JSON/CSV للدخل والمصروفات"
-        },
-        "en": {
-            "name": "Bank SMS Parser",
-            "description": "Personal fintech tool that parses SMS messages from bank contacts then outputs JSON/CSV format for your income and spending"
-        },
-        "status": "wip",
-        "links": {
-            "github": "Muaath5/bank_sms_parser"
-        }
-    },
-    {
-        "start_date": "2026/07/08",
-        "ar": {
-            "name": "معرض الخطوط العربية",
-            "description": "نخبة الخطوط العربية بصيغة سهلة الاستخدام بصيغ TTF/OTF/WOFF2"
-        },
-        "en": {
-            "name": "Arabic Fonts Gallary",
-            "description": "Selected collection of free Arabic fonts easily downloadable with formats TTF/OTF/WOFF2"
-        },
-        "status": "wip",
-        "links": {
-            "github": "Muaath5/arabic_fonts",
-            "url": "https://fonts.muaath.dev/"
+            "github": "Muaath5/TDLibBinaries"
         }
     }
 ]

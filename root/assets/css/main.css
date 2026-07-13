@@ -532,6 +532,7 @@ a.tag:hover { background: var(--accent); color: #fff; }
     font-size: .86rem;
     display: flex;
     align-items: center;
+    position: relative;
     gap: .5rem;
     background: var(--accent-light);
     border: 1px solid var(--accent);
@@ -540,21 +541,209 @@ a.tag:hover { background: var(--accent); color: #fff; }
 .alert .btn-close {
     all: unset;
     cursor: pointer;
-    margin-inline-start: auto;
+    position: absolute;
+    top: 0;
+    inset-inline-end: 0; /* Pins to Right in LTR, Left in RTL */
+    padding: .7rem 1.15rem;
     color: var(--gray);
     font-size: 1.1rem;
     line-height: 1;
-    padding: .2rem;
+    /* padding: .2rem; */
 }
 
 
+
 /* ================================================================
-   HOME PAGE  (home.html — keeps working on base.html)
+   HOME PAGE  (home.html) — minimalist, dark indigo (from favicon)
    ================================================================ */
-/* You can keep your existing home.html layout using base.html.
-   The minimal resets above will already apply. If you want to
-   style the home page cards, add rules here prefixed with
-   .home-* or scope them via body class. */
+.home-indigo {
+    --indigo: #09244B;
+    --indigo-soft: #3C5478;
+    --hairline: #E7E7E4;
+}
+
+.home-container {
+    max-width: 700px;
+}
+
+/* nav brand dot matches indigo on this page only */
+.home-indigo .brand-dot { background: var(--indigo); }
+.home-indigo .nav-link:hover { color: var(--indigo); }
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.home-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+}
+.home-name {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    color: var(--indigo);
+    margin-bottom: 1rem;
+}
+.home-roles {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    color: var(--gray);
+    font-size: .95rem;
+    margin-bottom: 1.75rem;
+}
+.home-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.3rem;
+}
+.home-social a {
+    color: var(--gray);
+    font-size: 1.15rem;
+    transition: color .15s;
+}
+.home-social a:hover { color: var(--indigo); }
+
+/* ── Blog callout ─────────────────────────────────────────────── */
+.home-blog-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.15rem 0;
+    margin-bottom: 3.5rem;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: opacity .15s;
+}
+.home-blog-card:hover { opacity: .7; }
+.home-blog-text h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: .25rem;
+}
+.home-blog-text p {
+    font-size: .87rem;
+    color: var(--gray);
+    margin-bottom: .35rem;
+}
+.home-blog-latest {
+    font-size: .75rem;
+    color: var(--gray);
+}
+.home-blog-cta {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 500;
+    font-size: .88rem;
+    color: var(--indigo);
+    white-space: nowrap;
+}
+.home-blog-cta i { font-size: 1rem; }
+
+/* ── Projects ─────────────────────────────────────────────────── */
+.home-section-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+}
+@media (max-width: 640px) {
+    .project-grid { grid-template-columns: 1fr; }
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 1.4rem;
+    border-bottom: 1px solid var(--hairline);
+    border-inline-end: 1px solid var(--hairline);
+    transition: background .15s;
+}
+.project-grid > .project-card:nth-child(2n) {
+    border-inline-end: none;
+}
+@media (max-width: 640px) {
+    .project-card { border-inline-end: none !important; }
+}
+.project-card:hover { background: #FAFAF8; }
+
+.project-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .6rem;
+    margin-bottom: .2rem;
+}
+.project-title {
+    font-size: .98rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--ink);
+}
+.project-badge {
+    flex-shrink: 0;
+    font-size: .66rem;
+    font-weight: 500;
+    color: var(--indigo-soft);
+    white-space: nowrap;
+    margin-top: .15rem;
+}
+.project-badge::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    margin-inline-end: .35rem;
+    vertical-align: middle;
+}
+
+.project-date {
+    font-size: .74rem;
+    color: var(--gray);
+    margin-bottom: .55rem;
+}
+.project-desc {
+    font-size: .85rem;
+    color: var(--gray);
+    line-height: 1.55;
+    margin-bottom: .9rem;
+    flex-grow: 1;
+}
+.project-links {
+    display: flex;
+    gap: .8rem;
+    margin-top: auto;
+}
+.project-links a {
+    color: var(--gray);
+    font-size: .92rem;
+    transition: color .15s;
+}
+.project-links a:hover { color: var(--indigo); }
+
+@media (max-width: 600px) {
+    .home-hero { padding: 2rem 0 1.75rem; }
+    .home-name { font-size: 1.6rem; }
+    .home-blog-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .6rem;
+    }
+    .home-blog-cta { align-self: flex-end; }
+}
 
 
 /* ================================================================

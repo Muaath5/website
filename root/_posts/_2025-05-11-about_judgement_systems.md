@@ -1,7 +1,7 @@
 ---
 title: "Online Judgement Systems"
 description: "Terminology, and a tour on different types of tasks"
-tags: ["cp", "judgement"]
+tags: ["Tutorial", "cp"]
 lang: en
 usemathjax: true
 ---
@@ -60,10 +60,10 @@ Usually reads TestcaseInput and UserOutput, and writes to InteractorOutput and t
 If you know details of it [contact me](me@muaath.dev).
 
 ## Grader (called _"stub"_)
-An additional file compiled with UserCode that handles I/O.
+An additional file compiled with UserCode that handles I/O, used in many IOI.
 
 ## Manager
-A program that runs multiple codes, usually used in communication/two-steps problems.
+A program that runs multiple codes, usually used in communication/two-steps problems especially in CMS.
 
 # Types of tasks
 

@@ -1,7 +1,7 @@
 ---
 title: "C++ Tricks"
 description: "Hidden features that could be useful in optimizing time, memory, and code length!"
-tags: ["c++", "cp"]
+tags: ["c++", "cp", "Tutorial"]
 lang: en
 usemathjax: false
 ---

@@ -2,7 +2,7 @@
 title: "Laravel on AWS"
 description: "Using Elastic Beanstalk"
 lang: en
-tags: ["tutorial", "web", "servers", "linux"]
+tags: ["Tutorial", "web", "linux"]
 ---
 ## Notes
 - In this tutorial, I will use Ubuntu system always

@@ -2,7 +2,7 @@
 title: "CSES Automation in Python"
 description: "Customizable python script for controlling a CSES account"
 lang: en
-tags: ["cp", "library", "python"]
+tags: ["Tutorial", "cp"]
 ---
 **Version: 2**
 I just created a [Python script](/scripts/cses.py) that can:

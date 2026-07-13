@@ -1,7 +1,7 @@
 ---
 title: "C++ Random"
 description: "About different random functions in C++"
-tags: ["c++", "resource", "cp"]
+tags: ["Tutorial", "c++"]
 lang: en
 usemathjax: true
 updates_history:

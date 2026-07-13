@@ -2,4 +2,6 @@ _site
 .jekyll-cache
 root/secret
 root/secret/*
+root/_data
+root/_data/*
 .sass-cache

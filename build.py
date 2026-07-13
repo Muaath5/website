@@ -4,6 +4,7 @@ import base64
 import json
 import datetime
 import subprocess
+import html
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
@@ -153,7 +154,7 @@ def write_yml(data: dict, indent: int = 0) -> str:
         elif isinstance(val, int):
             res += " " * indent + str(key) + ": " + str(val) + "\n"
         else:
-            res += " " * indent + str(key) + ": \"" + str(val) + "\"\n"
+            res += " " * indent + str(key) + ": \"" + str(val).replace('\n', "\\n").replace('"', '\\"') + "\"\n"
     return res
 
 def write_file(filename: str, vals: dict, mode: str = 'w'):
@@ -181,31 +182,46 @@ def main():
         'commit_number': get_commits_count()
     }, 'a')
 
+    # Prepare translations
+    translations = load_json('translations')
+
+    languages = list(translations.keys())
+    main_lang = languages[0]
+
+    for lang in languages:
+        write_file(f"_data/{lang}.yml", translations[lang])
+
+
+
+    # Read data
+    social = load_json('social')
     projects = load_json('projects')
     awards = load_json('awards')
     badges = load_json('project_badges')
+    
+    write_file("_data/social.yml", social)
 
     for proj in projects:
         proj['status_color'] = badges[proj['status']]['color']
         proj['ar']['status'] = badges[proj['status']]['ar']
         proj['en']['status'] = badges[proj['status']]['en']
 
-    write_file('index.html', {
-        'title': 'معاذ القرني',
-        'description': 'موقع شخصي',
-        'lang': 'ar',
-        'layout': 'home',
-        'projects': projects,
-    })
-    write_file('en.html', {
-        'title': 'Muaath Alqarni',
-        'description': 'Personal website',
-        'lang': 'en',
-        'layout': 'home',
-        'projects': projects,
-    })
+    for lang in languages:
+        filename = f'{lang}.html'
+        if lang == main_lang:
+            filename = 'index.html'
+        write_file(filename, {
+            'title': translations[lang]['title'],
+            'description': translations[lang]['description'],
+            'lang': lang,
+            'layout': 'home',
+            'social': social,
+            'projects': projects,
+        })
+        print(f"Wrote {filename} front-matter")
 
-    secret_files()
+    # secret_files()
+    # print(f"Wrote secret files")
 
 if __name__ == '__main__':
     main()

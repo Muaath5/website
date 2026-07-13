@@ -1,7 +1,7 @@
 ---
 title: "Communication tasks"
 description: "A.k.a Two-Steps"
-tags: ["cp", "resource", "tutorial"]
+tags: ["cp", "tutorial"]
 lang: en
 usemathjax: true
 ---

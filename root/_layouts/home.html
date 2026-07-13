@@ -1,127 +1,110 @@
 ---
-layout: main
+layout: base
 ---
-<!--
-navbar
--->
-<main id="content" class="pb-5 pt-2 container">
-    <div class="row text-end mb-4">
-        {% if page.lang == "en" %}
-        <a class="fs-6" href="/">العربية</a>
-        {% else %}
-        <a class="fs-6" href="/en">English</a>
-        {% endif %}
-    </div>
-    <div class="row mt-1">
-        <div class="col-md-6 col-sm-12 mt-1">
-            <div class="rounded-2 p-3 m-1 bg-secondary-subtle h-100 d-flex flex-column">
-                <h2>
-                    {% if page.lang == "en" %}
-                    Muaath Alqarni
-                    {% else %}
-                    معاذ القرني
-                    {% endif %}
+<div class="site-wrapper home-indigo">
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="/">
+                <span class="brand-dot"></span>
+                {{ site.data[page.lang].title }}
+            </a>
+            <div class="nav-links">
+                {% if page.lang == "en" %}
+                <a class="nav-link" href="/">العربية</a>
+                {% else %}
+                <a class="nav-link" href="/en">English</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="site-main">
+        <div class="container home-container">
+
+            <!-- ===== Hero ===== -->
+            <section class="home-hero">
+                <h1 class="home-name">
+                    {{ site.data[page.lang].title }}
+                </h1>
+                <ul class="home-roles">
+                    {{ site.data[page.lang].description | safe }}
+                </ul>
+                <div class="home-social">
+                    {% for soc in site.data.social %}
+                    <a href="{{ soc[1].url }}" aria-label="{{ soc[0] }}"><i class="bi-{{ soc[1].icon }}"></i></a>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- ===== Blog callout ===== -->
+            <a href="/blog/" class="home-blog-card">
+                <div class="home-blog-text">
+                    <h2>
+                        {{ site.data[page.lang].blog }}
+                    </h2>
+                    <p>
+                        {{ site.data[page.lang].blog_description }}
+                    </p>
+                    <span class="home-blog-latest">
+                        {{ site.data[page.lang].latest_blog }}: {{ site.posts[0].date | date: "%Y/%m/%d" }}
+                    </span>
+                </div>
+                <div class="home-blog-cta">
+                    <span>{% if page.lang == "en" %}Welcome{% else %}حياك{% endif %}</span>
+                    <i class="bi-arrow-{% if page.lang == 'ar' %}left{% else %}right{% endif %}"></i>
+                </div>
+            </a>
+
+            <!-- ===== Projects ===== -->
+            <section id="projects" class="home-projects">
+                <h2 class="home-section-title">
+                    {% if page.lang == "en" %}Projects{% else %}المشاريع{% endif %}
                 </h2>
-                <h5>
-                    <ul>
-                        {% if page.lang == "en" %}
-                        <li>Computer Sience Student</li>
-                        <li>Past Saudi Informatics/AI Team member</li>
-                        <li>Web developer</li>
-                        {% else %}
-                        <li>طالب علوم حاسب</li>
-                        <li>عضو سابق في المنتخب السعودي للمعلوماتية/الذكاء الاصطاعي</li>
-                        <li>مطور ويب</li>
-                        {% endif %}
-                    </ul>
-                </h5>
-                <div class="d-flex justify-content-center mt-auto">
-                    <div class="btn-group btn-group-lg" role="group" aria-label="Accounts">
-                        <a href="https://github.com/Muaath5" type="button" class="btn btn-dark"><i class="bi-github"></i></a>
-                        <a href="https://t.me/Muaath_5" type="button" class="btn btn-outline-primary"><i class="bi-telegram"></i></a>
-                        <a href="mailto:me@muaath.dev" type="button" class="btn btn-secondary"><i class="bi-envelope"></i></a>
-                        <a href="https://x.com/Muaath_dev" type="button" class="btn btn-dark"><i class="bi-twitter-x"></i></a>
-                    </div>
+                <div class="project-grid">
+                    {% for i in (1..page.projects.count) %}
+                    <article class="project-card">
+                        <div class="project-card-top">
+                            <h3 class="project-title">{{ page.projects[i][page.lang].name }}</h3>
+                            {% if page.projects[i][page.lang].status %}
+                            <span class="project-badge badge-{{ page.projects[i].status_color }}">
+                                {{ page.projects[i][page.lang].status }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <time class="project-date">{{ page.projects[i].start_date }}</time>
+                        <p class="project-desc">{{ page.projects[i][page.lang].description }}</p>
+                        <div class="project-links">
+                            {% if page.projects[i].links.github %}
+                            <a href="https://github.com/{{ page.projects[i].links.github }}" aria-label="GitHub"><i class="bi-github"></i></a>
+                            {% endif %}
+                            {% if page.projects[i].links.telegram %}
+                            <a href="https://t.me/{{ page.projects[i].links.telegram }}" aria-label="Telegram"><i class="bi-telegram"></i></a>
+                            {% endif %}
+                            {% if page.projects[i].links.x %}
+                            <a href="https://x.com/{{ page.projects[i].links.x }}" aria-label="X"><i class="bi-twitter-x"></i></a>
+                            {% endif %}
+                            {% if page.projects[i].links.url %}
+                            <a href="{{ page.projects[i].links.url }}" aria-label="Website"><i class="bi-link-45deg"></i></a>
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endfor %}
                 </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-social">
+                {% for soc in site.data.social %}
+                <a href="{{ soc[1].url }}" aria-label="{{ soc[0] }}"><i class="bi-{{ soc[1].icon }}"></i></a>
+                {% endfor %}
+            </div>
+            <div class="footer-meta">
+                {{ site.data[page.lang].footer }}
             </div>
         </div>
-        <div class="col-md-6 col-sm-12 mt-1">
-            <div class="rounded-2 p-3 m-1 bg-success-subtle h-100 d-flex flex-column">
-                <h2>
-                    {% if page.lang == "en" %}
-                    Blog
-                    {% else %}
-                    المدونة
-                    {% endif %}
-                </h2>
-                <h5>
-                    {% if page.lang == "en" %}
-                    Random articles and tutorials for different topics
-                    {% else %}
-                    مقالات عشوائية وشروحات لمواضيع مختلفة
-                    {% endif %}
-                </h5>
-                <h6 class="text-body-secondary">
-                    {% if page.lang == "en" %}
-                    Latest blog:
-                    {% else %}
-                    آخر تدوين:
-                    {% endif %}
-                    {{ site.posts[0].date | date: "%Y/%m/%d" }}
-                </h6>
-                <div class="d-flex justify-content-end mt-auto">
-                    
-                    <a href="https://muaath.dev/blog/" type="button" class="btn btn-primary"><i class="bi-link-45deg"></i>
-                        {% if page.lang == "en" %}
-                        Welcome
-                        {% else %}
-                        حياك
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr><hr>
-    <div class="row" id="projects">
-        <h3>
-            {% if page.lang == "en" %}
-            Projects
-            {% else %}
-            المشاريع
-            {% endif %}
-        </h3>
-        {% for i in (1..page.projects.count) %}
-        <div class="col-md-6 col-sm-12">
-            <div class="card m-1">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{ page.projects[i][page.lang].name }}
-                        {% if page.projects[i][page.lang].status %}
-                        <span class="badge bg-{{page.projects[i].status_color  }}">
-                            {{ page.projects[i][page.lang].status }}
-                        </span>
-                        {% endif %}
-                    </h5>
-                    <p class="card-text"><small class="text-body-secondary">{{ page.projects[i].start_date }}</small></p>
-                    <p class="card-text">{{ page.projects[i][page.lang].description }}</p>
-                    <div class="btn-group" role="group" aria-label="Links">
-                        {% if page.projects[i].links.github %}
-                        <a href="https://github.com/{{ page.projects[i].links.github }}" type="button" class="btn btn-dark"><i class="bi-github"></i></a>
-                        {% endif %}
-                        {% if page.projects[i].links.telegram %}
-                            <a href="https://t.me/{{ page.projects[i].links.telegram }}" type="button" class="btn btn-outline-primary"><i class="bi-telegram"></i></a>
-                        {% endif %}
-                        {% if page.projects[i].links.x %}
-                            <a href="https://x.com/{{ page.projects[i].links.x }}" type="button" class="btn btn-dark"><i class="bi-twitter-x"></i></a>
-                        {% endif %}
-                        {% if page.projects[i].links.url %}
-                            <a href="{{ page.projects[i].links.url }}" type="button" class="btn btn-outline-primary"><i class="bi-link-45deg"></i></a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</main>
+    </footer>
+</div>
