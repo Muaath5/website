@@ -6,7 +6,7 @@
         "blog": "المدونة",
         "blog_description": "مختلف الشروحات والمقالات لمواضيع عشوائية",
         "projects": "المشاريع",
-        "lastest_post": "آخر مقالة:",
+        "lastest_post": "آخر مقالة",
         "footer": "بُرمج باستعمال <a href=\"https://muaath.dev/blog/mustatic\">MuStatic</a>",
         "welcome": "حياك"
     },
@@ -17,7 +17,7 @@
         "blog": "Blog",
         "blog_description": "Random articles and tutorials for different topics",
         "projects": "Projects",
-        "lastest_post": "Latest post:",
+        "lastest_post": "Latest post",
         "footer": "Built using <a href=\"https://muaath.dev/blog/mustatic\">MuStatic</a>",
         "welcome": "Welcome"
     }

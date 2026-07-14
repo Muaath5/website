@@ -220,8 +220,8 @@ def main():
         })
         print(f"Wrote {filename} front-matter")
 
-    # secret_files()
-    # print(f"Wrote secret files")
+    secret_files()
+    print(f"Wrote secret files")
 
 if __name__ == '__main__':
     main()

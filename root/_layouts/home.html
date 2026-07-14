@@ -46,7 +46,7 @@ layout: base
                         {{ site.data[page.lang].blog_description }}
                     </p>
                     <span class="home-blog-latest">
-                        {{ site.data[page.lang].latest_blog }}: {{ site.posts[0].date | date: "%Y/%m/%d" }}
+                        {{ site.data[page.lang].lastest_post }}: {{ site.posts[0].date | date: "%Y/%m/%d" }}
                     </span>
                 </div>
                 <div class="home-blog-cta">
@@ -66,7 +66,7 @@ layout: base
                         <div class="project-card-top">
                             <h3 class="project-title">{{ page.projects[i][page.lang].name }}</h3>
                             {% if page.projects[i][page.lang].status %}
-                            <span class="project-badge badge-{{ page.projects[i].status_color }}">
+                            <span class="project-badge" style="background-color: {{ page.projects[i].status_color }} !important;">
                                 {{ page.projects[i][page.lang].status }}
                             </span>
                             {% endif %}

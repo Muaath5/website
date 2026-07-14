@@ -695,7 +695,10 @@ a.tag:hover { background: var(--accent); color: #fff; }
     flex-shrink: 0;
     font-size: .66rem;
     font-weight: 500;
-    color: var(--indigo-soft);
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 2px;
     white-space: nowrap;
     margin-top: .15rem;
 }
