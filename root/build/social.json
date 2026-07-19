@@ -2,5 +2,6 @@
     "Email": {"icon": "envelope", "url": "mailto:me@muaath.dev"},
     "LinkedIn": {"icon": "linkedin", "url": "https://www.linkedin.com/in/muaath-alqarni/"},
     "Github": {"icon": "github", "url": "https://github.com/Muaath5"},
-    "X": {"icon": "twitter-x", "url": "https://x.com/Muaath_dev"}
+    "X": {"icon": "twitter-x", "url": "https://x.com/Muaath_dev"},
+    "GPG": {"icon": "pen", "url": "/muaath.gpg"}
 }
