@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>قضية طيبة — ١٠ حجج للدفاع</title>
+<style>
+:root{--paper:#f5f2e9;--ink:#193e34;--muted:#68766b;--line:#d8ddcf;--orange:#d65b32;--mint:#e4eadb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+button,a,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+.wrap{max-width:1160px;margin:auto;padding:0 38px}
+header{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:9}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{text-decoration:none;font-weight:bold;font-size:21px;display:flex;align-items:center;gap:10px}
+.brand-icon{border:1px solid var(--ink);width:31px;height:31px;display:grid;place-items:center;border-radius:50%;font-size:17px}
+nav{display:flex;gap:28px;font-size:12px}
+nav a{text-decoration:none}
+.small-label{font:11px Arial,sans-serif;letter-spacing:2px;direction:ltr}
+.top-line{height:3px;background:var(--orange);position:absolute;bottom:-2px;right:0;width:0;transition:width .3s}
+.hero{padding-top:54px}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.hero-grid{display:grid;grid-template-columns:1.08fr 1fr;gap:35px;align-items:center;padding:35px 0 56px}
+h1{font-size:clamp(40px,5vw,65px);line-height:1.5;letter-spacing:-2px;margin:0 0 18px;font-weight:500}
+h1 strong{font-weight:700}
+.hero p{max-width:450px;line-height:2;font-size:14px;color:var(--muted)}
+.actions{display:flex;gap:12px;align-items:center;margin-top:29px;flex-wrap:wrap}
+.primary,.secondary{border:1px solid var(--ink);padding:15px 23px;text-decoration:none;font-size:12px;display:inline-flex;align-items:center;gap:24px;border-radius:3px}
+.primary{background:var(--ink);color:var(--paper)}
+.secondary{background:transparent;color:var(--ink)}
+.primary:hover{background:#285548}
+.secondary:hover{background:var(--mint)}
+.art{position:relative;min-height:360px;display:grid;place-items:center;background:radial-gradient(ellipse at center,#e3e6d6 0,transparent 67%);overflow:hidden}
+.orbit{position:absolute;width:300px;height:300px;border:1px solid #c7cfbb;border-radius:50%}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #c7cfbb;border-radius:50%;inset:28px}
+.orbit:after{inset:-24px;border-style:dashed;opacity:.55}
+.big-name{font-family:Georgia,"Times New Roman",serif;font-size:172px;line-height:1.2;transform:rotate(-8deg);position:relative;z-index:1}
+.art-caption{position:absolute;bottom:14px;font-size:10px;letter-spacing:2px}
+.stamp{position:absolute;top:18px;left:13px;color:var(--orange);border:2px solid var(--orange);border-radius:50%;width:98px;height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(15deg);font-size:13px;line-height:1.8;background:var(--paper);z-index:2;box-shadow:inset 0 0 0 4px var(--paper),inset 0 0 0 5px var(--orange)}
+.stamp span{font-size:9px}
+.fact{display:flex;gap:20px;align-items:flex-start;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;font-size:12px;line-height:1.9}
+.fact-tag{white-space:nowrap;border:1px solid var(--orange);color:var(--orange);border-radius:2px;padding:2px 8px;font-size:10px}
+.fact p{margin:0;color:var(--muted);max-width:none;font-size:12px}
+.fact strong{color:var(--ink)}
+.case-section{padding:65px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.kicker{color:var(--orange);font-size:10px;letter-spacing:1px;margin-bottom:10px}
+h2{font-size:32px;font-weight:500;margin:0;line-height:1.6}
+.section-head p{color:var(--muted);font-size:12px;line-height:1.8;margin:8px 0 0}
+.read-status{font-size:11px;color:var(--muted);text-align:left;min-width:130px}
+.read-status strong{font:30px Georgia,serif;color:var(--ink);display:block;margin-bottom:6px}
+.tools{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:30px 0 23px}
+.filters{display:flex;gap:5px;flex-wrap:wrap}
+.filter{border:1px solid transparent;background:none;padding:9px 14px;font-size:11px;color:var(--muted);border-radius:3px}
+.filter.active{border-color:var(--ink);color:var(--ink)}
+.shuffle{border:0;background:none;color:var(--orange);font-size:11px;padding:8px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.card{border:1px solid var(--line);background:#fbfaf5;border-radius:4px;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:#9aab93}
+.card.open{border-color:var(--ink)}
+.card[hidden]{display:none}
+.card-toggle{border:0;background:none;color:var(--ink);width:100%;padding:25px;text-align:right;display:block}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}
+.number{font:32px Georgia,serif;color:#8f9b82;direction:ltr}
+.category{font-size:9px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:20px}
+.card-title{display:flex;align-items:center;justify-content:space-between;gap:15px}
+h3{font-size:18px;margin:0;font-weight:500;line-height:1.7}
+.plus{font:24px Georgia,serif;font-weight:400;flex-shrink:0}
+.teaser{font-size:11px;color:var(--muted);line-height:1.9;margin:8px 0 0}
+.detail{padding:0 25px 24px;font-size:12px;line-height:2;color:var(--muted)}
+.detail p{margin:0 0 12px}
+.example{background:var(--mint);color:var(--ink);padding:12px 15px;border-right:2px solid #91a384;font-size:12px}
+.limit{font-size:10px;line-height:1.9;margin-top:13px;color:#826c55}
+.card.open .number{color:var(--orange)}
+.conclusion{background:var(--ink);color:var(--paper);padding:45px;margin:10px 0 60px;border-radius:4px;position:relative}
+.conclusion .kicker{color:#c4d5b6}
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.conclusion h2{font-size:35px;margin:10px 0}
+.conclusion p{color:#c3cec0;font-size:13px;line-height:2}
+.verdict-mark{font-family:Georgia,"Times New Roman",serif;font-size:70px;margin-bottom:10px}
+.conclusion button{color:var(--paper);border-color:#8a9e8c}
+.conclusion button:hover{background:#2a5145}
+.verdict-note{border-top:1px solid #426254;padding-top:20px;margin-top:26px;font-size:11px;color:#bdcdb9;line-height:2}
+.sources{padding-bottom:40px}
+.sources summary{cursor:pointer;font-size:12px;padding-bottom:14px}
+.sources p,.sources li{font-size:11px;line-height:2;color:var(--muted)}
+.sources a{text-underline-offset:4px}
+footer{border-top:1px solid var(--line);padding:25px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:10px}
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:white;padding:14px 24px;z-index:20;border-radius:4px;font-size:12px;transition:transform .25s;box-shadow:0 8px 30px #0002;max-width:90%;text-align:center}
+.toast.visible{transform:translateX(-50%) translateY(0)}
+dialog{background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:28px;border-radius:8px;width:min(90%,480px)}
+dialog::backdrop{background:#193e3477}
+dialog p{font-size:12px;line-height:2}
+dialog textarea{width:100%;height:140px;background:#fffdf7;color:var(--ink);border:1px solid var(--line);font:13px Tahoma;line-height:2;padding:12px;resize:vertical}
+dialog button{margin-top:15px}
+@media(min-width:1000px){.card:nth-child(5),.card:nth-child(8){background:#edf0e5}}
+@media(max-width:700px){.wrap{padding:0 22px}.nav{height:65px}nav{gap:15px;font-size:10px}.small-label{display:none}.hero{padding-top:30px}.hero-grid{grid-template-columns:1fr;gap:15px;padding:25px 0 35px}.hero-copy{order:1}.art{min-height:250px;order:0}.orbit{width:210px;height:210px}.big-name{font-size:135px}.stamp{width:77px;height:77px;top:8px;left:25px;font-size:11px}.art-caption{bottom:2px;font-size:9px}h1{font-size:42px;line-height:1.4}.hero p{font-size:13px}.fact{gap:12px;flex-direction:column;padding:18px 0}.case-section{padding:40px 0}.section-head{align-items:center}h2{font-size:26px}.read-status{min-width:75px}.read-status strong{font-size:25px}.tools{align-items:flex-start;flex-direction:column}.filter{padding:8px 11px}.cards{grid-template-columns:1fr}.card-toggle{padding:21px}.card-top{margin-bottom:14px}.detail{padding:0 21px 21px}.verdict-grid{grid-template-columns:1fr;gap:18px}.conclusion{padding:27px;margin-bottom:35px}.conclusion h2{font-size:27px}.verdict-mark{font-size:54px}.footer-inner{flex-direction:column;line-height:1.8}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="#home"><span class="brand-icon" aria-hidden="true">ط</span> قضية طيبة</a>
+<nav aria-label="التنقل الرئيسي"><a href="#arguments">الحجج العشر</a><a href="#verdict">الحكم</a><a href="#sources">المراجع</a></nav>
+<span class="small-label">THE TAYBA CASE / 001</span>
+</div>
+<div class="top-line" id="progress" aria-hidden="true"></div>
+</header>
+<main id="home" class="wrap">
+<section class="hero" aria-labelledby="hero-title">
+<div class="eyebrow"><span class="dot"></span> ملف مفتوح للنقاش · مرافعة لغوية بروح خفيفة</div>
+<div class="hero-grid">
+<div class="hero-copy">
+<h1 id="hero-title">طيبة.<br><strong>اسم رجل؟</strong><br>خلّنا نفتح الملف.</h1>
+<p>عشر حجج للدفاع عن «طيبة» كاسم لرجل. من التاء المربوطة إلى قوة السياق؛ مرافعة تبدأ بحرف وتنتهي بصاحب الاسم.</p>
+<div class="actions">
+<a class="primary" href="#arguments">استعرض الحجج العشر <span aria-hidden="true">↙</span></a>
+<button class="secondary" id="share">شارك المرافعة <span aria-hidden="true">↗</span></button>
+</div>
+</div>
+<div class="art" aria-label="طيبة، الاسم محل النقاش">
+<div class="orbit" aria-hidden="true"></div>
+<div class="big-name">طيبة</div>
+<div class="stamp">قابل للدفاع<span>١٠ حجج · ملف واحد</span></div>
+<div class="art-caption">الاسم أكبر من آخر حرف فيه</div>
+</div>
+</div>
+<div class="fact">
+<span class="fact-tag">قبل المرافعة</span>
+<p><strong>للأمانة: طيبة اسم مؤنث في الاستعمال الشائع.</strong> هذه الحجج تدافع عن إمكان استعماله لرجل، ولا تثبت أنه اسم مذكر تقليدي. الأمثلة على رجل اسمه طيبة هنا افتراضية، وليست توثيقًا لشخص بعينه.</p>
+</div>
+</section>
+
+<section class="case-section" id="arguments" aria-labelledby="arguments-title">
+<div class="section-head">
+<div><div class="kicker">ملف الدفاع / ٠١—١٠</div><h2 id="arguments-title">عشر حجج. وخذ راحتك بالحكم.</h2><p>افتح كل بطاقة لقراءة الحجة وحدودها.</p></div>
+<div class="read-status" aria-live="polite"><strong id="readCount">٠ / ١٠</strong>حجج اطّلعت عليها</div>
+</div>
+<div class="tools">
+<div class="filters" role="group" aria-label="تصفية الحجج">
+<button class="filter active" data-filter="all" aria-pressed="true">الكل <span>١٠</span></button>
+<button class="filter" data-filter="language" aria-pressed="false">من اللغة</button>
+<button class="filter" data-filter="context" aria-pressed="false">من السياق</button>
+<button class="filter" data-filter="logic" aria-pressed="false">من المنطق</button>
+</div>
+<button class="shuffle" id="random">↗ افتح حجة عشوائية</button>
+</div>
+<div class="cards" id="cards"></div>
+</section>
+
+<section class="conclusion" id="verdict" aria-labelledby="verdict-title">
+<div class="kicker">بعد سماع المرافعة</div>
+<div class="verdict-grid">
+<div><div class="verdict-mark" aria-hidden="true">طيبة.</div><h2 id="verdict-title">صاحب الاسم له كلمة.</h2></div>
+<div><p>إذا عرّفك رجل بنفسه وقال «اسمي طيبة»، فناده باسمه. شيوع الاسم للنساء لا يغيّر هوية شخص يحمله.</p><button class="secondary" id="copyVerdict">انسخ خلاصة الدفاع <span aria-hidden="true">↗</span></button></div>
+</div>
+<div class="verdict-note"><strong>الحكم اللغوي:</strong> لا تكفي هذه الحجج لإثبات أن «طيبة» اسم مذكر في الأصل أو الشيوع؛ لكنها تبيّن لماذا لا يصح استنتاج جنس شخص من تهجئة اسمه وحدها. <span id="completion">تصفّح الحجج ووازن بينها بنفسك.</span></div>
+</section>
+
+<details class="sources" id="sources">
+<summary>المراجع وحدود المرافعة</summary>
+<p>المراجع تؤيد نقطتين محددتين: شيوع طيبة اسمًا مؤنثًا، ووجود أسماء رجال تنتهي بالتاء المربوطة. بقية البطاقات استدلالات وأمثلة افتراضية، وليست عشرة شواهد تاريخية على استعمال طيبة للرجال.</p>
+<ul>
+<li><a href="https://meaningnames.net/of-%D8%B7%D9%90%D9%8A%D8%A8%D8%A9" target="_blank" rel="noopener noreferrer">قاموس الأسماء والمعاني — اسم طِيبة</a>: يصنّفه اسم علم مؤنثًا.</li>
+<li><a href="https://dorar.net/arabia/2626/المبحث-الثاني-تكتب-التاء-مربوطة-ة-في-نهاية" target="_blank" rel="noopener noreferrer">الدرر السنية — مواضع كتابة التاء المربوطة</a>: يذكر أسماء مذكرة مثل حمزة وطلحة ومعاوية.</li>
+<li><a href="https://dictionary.ksaa.gov.sa/result/طَيِّبَة" target="_blank" rel="noopener noreferrer">معجم الرياض — طَيِّبة</a>: يبيّن أنها مؤنث الصفة «طيّب». الصفة واسم الشخص ليسا بالضرورة استعمالًا واحدًا.</li>
+</ul>
+</details>
+</main>
+<footer><div class="wrap footer-inner"><span>قضية طيبة © <span id="year"></span> · مساحة للنقاش، مع احترام أصحاب الأسماء.</span><a href="#home">العودة إلى بداية الملف ↑</a></div></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<dialog id="copyDialog" aria-labelledby="dialogTitle"><h3 id="dialogTitle">خلاصة جاهزة للمشاركة</h3><p>يمكنك تحديد النص ونسخه:</p><textarea id="copyText" readonly aria-label="نص المشاركة"></textarea><button id="closeDialog" class="primary">تم</button></dialog>
+<script>
+const argumentsData=[
+{type:"language",title:"التاء المربوطة ليست حكمًا نهائيًا",teaser:"حمزة وطلحة ومعاوية… آخر حرف لا يحسم القضية.",body:"تنتهي أسماء رجال معروفة بالتاء المربوطة. لذلك، وجود «ة» في طيبة لا يكفي وحده لاستنتاج جنس صاحب الاسم.",example:"حمزة رجل، رغم أن اسمه ينتهي بـ «ة».",limit:"هذا ينقض حجة النهاية وحدها؛ ولا يثبت أن كل اسم ينتهي بالتاء المربوطة مذكر."},
+{type:"language",title:"اسم الشخص ليس مجرد صفة",teaser:"هناك فرق بين وصف إنسان وتسميته.",body:"في الوصف نقول «رجل طيّب» و«امرأة طيّبة». أما اسم العلم فيُستعمل لتعيين شخص. تحويل كلمة إلى اسم يقتضي النظر إلى استعمالها، لا إلى وصفها اللغوي وحده.",example:"«طيبة وصل» مثال افتراضي إذا كان طيبة اسم رجل.",limit:"لا تُستنتج ذكورة اسم طيبة من هذا المثال المصنوع؛ نحتاج توثيقًا لإثبات الاستعمال الفعلي."},
+{type:"language",title:"المعنى الجميل لا يخص جنسًا",teaser:"الكرم وصفاء النفس معانٍ يتصف بها الرجال أيضًا.",body:"الطيبة خُلُق يمكن أن يتصف به أي إنسان. فإذا كان الاعتراض على المعنى نفسه، فلا شيء في معنى طيبة القلب يجعله حكرًا على النساء.",example:"«فلان معروف بطيبة قلبه» وصف طبيعي لرجل.",limit:"صلاحية المعنى للرجل لا تجعل الاسم مذكرًا في العرف؛ إنها حجة معنوية فقط."},
+{type:"language",title:"تأنيث اللفظ لا يصف كل ما يشير إليه",teaser:"التصنيف النحوي وجنس الإنسان سؤالان مختلفان.",body:"قد يحمل اسم رجل علامة تأنيث لفظية، كما في طلحة. هذا يوضح ضرورة الفصل بين شكل الاسم وبين جنس الشخص الذي يدل عليه.",example:"نقول عن طلحة: «هو»، مع بقاء التاء المربوطة في الاسم.",limit:"القياس على طلحة يوضح المبدأ، ولا يثبت تاريخًا مماثلًا لاسم طيبة."},
+{type:"context",title:"اسمع الجملة كاملة",teaser:"السياق يحمل معلومات لا تحملها أربعة أحرف.",body:"لو قال متحدث «طيبة هو أخي»، لكان قد قدّم معلومة واضحة عن الشخص المقصود. قراءة الاسم وحده تُسقط هذه المعلومة.",example:"مثال افتراضي: «طيبة هو أخي الأكبر».",limit:"الجملة توضّح حالة مفترضة، وليست شاهدًا على شخص حقيقي."},
+{type:"context",title:"الاسم مع اللقب أوضح",teaser:"«السيد طيبة» يحدد المقصود في المثال.",body:"الألقاب وعبارات التعريف تساعد على فهم هوية المشار إليه. إذا عرّف رجل نفسه بلقب السيد وباسم طيبة، فالمعلومة المباشرة أرجح من التخمين بسبب الاسم.",example:"مثال افتراضي: «نرحب بالسيد طيبة، ضيف اللقاء».",limit:"إضافة لقب إلى اسم لا تغيّر تصنيفه الشائع؛ إنها تزيل اللبس عن شخص محدد."},
+{type:"context",title:"التعريف المباشر أقوى من التخمين",teaser:"إذا قال لك رجل «أنا طيبة»، فقد عرّفك بنفسه.",body:"عند الحديث مع شخص، اسمه الذي يعرّف به نفسه هو نقطة البداية. لا يلزم أن يكون الاسم شائعًا بين الرجال حتى تحترم اسم رجل يحمله.",example:"مثال افتراضي: «أهلًا، أنا طيبة، زميلك الجديد».",limit:"هذه حجة للتعامل مع صاحب الاسم، لا لإعادة تصنيف الاسم في المعاجم."},
+{type:"logic",title:"غير الشائع لا يعني المستحيل",teaser:"«عادةً» لا تعني «دائمًا».",body:"إذا عُرف اسم باستعماله للنساء، فهذا يصف عرفًا عامًا. الادعاء بأنه لا يمكن أن يحمله أي رجل أوسع من ذلك، ويحتاج دليلًا إضافيًا.",example:"الاستعمال الشائع ≠ استحالة وجود استثناء.",limit:"إمكان الاستثناء ليس إثباتًا لوجوده. لا نزعم هنا العثور على استثناء موثّق."},
+{type:"logic",title:"وقع الاسم مسألة انطباع",teaser:"«أحسه اسم بنت» ليس برهانًا على هوية شخص.",body:"قد يكوّن السامع انطباعًا من ألفته بالاسم. هذا يفسر توقعه، لكنه لا يكفي لنفي معلومات مباشرة عن شخص يحمل الاسم.",example:"الانطباع بداية سؤال، وليس نهاية تحقيق.",limit:"الاستعمال المعروف للاسم معلومة مفيدة؛ الاعتراض هنا على تحويل الانطباع إلى يقين عن فرد."},
+{type:"logic",title:"حدّد بالضبط ما تريد إثباته",teaser:"اسم لرجل بعينه؟ أم اسم مذكر في الأصل؟",body:"إثبات أن رجلًا واحدًا يحمل اسم طيبة يحتاج شاهدًا موثوقًا على ذلك الرجل. وإثبات أن الاسم مذكر تقليدي يحتاج شواهد لغوية وتاريخية أوسع. الخلط بين السؤالين يربك النقاش.",example:"«هذا اسم رجل معيّن» لا تساوي «هذا اسم مذكر شائع».",limit:"المرافعة تدافع عن الإمكان واحترام صاحب الاسم، ولا تقدّم إثباتًا تاريخيًا لذكورة اسم طيبة."}
+];
+const labels={language:"من اللغة",context:"من السياق",logic:"من المنطق"};
+const arabic=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+const read=new Set();
+const cards=document.getElementById("cards");
+argumentsData.forEach((a,i)=>{
+const card=document.createElement("article");
+card.className="card";card.dataset.type=a.type;card.id="argument-"+i;
+card.innerHTML=`<button class="card-toggle" aria-expanded="false" aria-controls="detail-${i}" id="toggle-${i}">
+<div class="card-top"><span class="number">${String(i+1).padStart(2,"0")}</span><span class="category">${labels[a.type]}</span></div>
+<div class="card-title"><h3>${a.title}</h3><span class="plus" aria-hidden="true">+</span></div><p class="teaser">${a.teaser}</p></button>
+<div class="detail" id="detail-${i}" role="region" aria-labelledby="toggle-${i}" hidden><p>${a.body}</p><div class="example">${a.example}</div><div class="limit">حدود الحجة: ${a.limit}</div></div>`;
+card.querySelector("button").addEventListener("click",()=>toggleCard(card,i));
+cards.appendChild(card);
+});
+function toggleCard(card,index,force=false){
+const button=card.querySelector("button"),detail=card.querySelector(".detail");
+const open=force||button.getAttribute("aria-expanded")==="false";
+button.setAttribute("aria-expanded",String(open));detail.hidden=!open;
+card.classList.toggle("open",open);card.querySelector(".plus").textContent=open?"−":"+";
+if(open){read.add(index);updateProgress()}
+}
+function updateProgress(){
+document.getElementById("readCount").textContent=arabic(read.size)+" / ١٠";
+document.getElementById("progress").style.width=(read.size*10)+"%";
+if(read.size===10)document.getElementById("completion").textContent="اطّلعت على الحجج العشر. اكتمل الملف، ويبقى الحكم لك.";
+}
+let currentFilter="all";
+function filter(type){
+currentFilter=type;
+document.querySelectorAll(".filter").forEach(b=>{
+const active=b.dataset.filter===type;
+b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active));
+});
+document.querySelectorAll(".card").forEach(c=>{c.hidden=type!=="all"&&c.dataset.type!==type});
+}
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>filter(b.dataset.filter)));
+document.getElementById("random").addEventListener("click",()=>{
+let options=argumentsData.map((a,i)=>({a,i})).filter(x=>currentFilter==="all"||x.a.type===currentFilter);
+const unread=options.filter(x=>!read.has(x.i));if(unread.length)options=unread;
+const pick=options[Math.floor(Math.random()*options.length)];
+const card=document.getElementById("argument-"+pick.i);toggleCard(card,pick.i,true);
+card.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+card.querySelector("button").focus({preventScroll:true});
+});
+let toastTimer;
+function toast(text){
+const el=document.getElementById("toast");el.textContent=text;el.classList.add("visible");
+clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("visible"),3200);
+}
+const summary="طيبة اسم مؤنث في الاستعمال الشائع، لكن نهاية الاسم وحدها لا تحدد جنس صاحبه؛ فحمزة وطلحة اسمان لرجلين وينتهيان بالتاء المربوطة. إذا عرّفك رجل بأن اسمه طيبة، فاحترم اسمه. هذا لا يثبت أن طيبة اسم مذكر تقليدي.";
+async function copy(text){
+try{
+if(!navigator.clipboard)throw new Error("Clipboard unavailable");
+await navigator.clipboard.writeText(text);toast("تم نسخ خلاصة المرافعة");
+}catch(e){
+const field=document.getElementById("copyText");field.value=text;
+const dialog=document.getElementById("copyDialog");
+if(!dialog.open)dialog.showModal();
+field.focus();field.select();
+}
+}
+document.getElementById("share").addEventListener("click",()=>copy("قضية طيبة — عشر حجج للدفاع عن استعمال الاسم لرجل.\n\n"+summary));
+document.getElementById("copyVerdict").addEventListener("click",()=>copy(summary));
+document.getElementById("closeDialog").addEventListener("click",()=>document.getElementById("copyDialog").close());
+document.getElementById("year").textContent=arabic(new Date().getFullYear());
+</script>
+</body>
+</html>
