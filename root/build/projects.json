@@ -1,6 +1,22 @@
 [
     {
-        "start_date": "2026/07/08",
+        "start_date": "2026-10-25",
+        "ar": {
+            "name": "صانع السير الذاتية",
+            "description": "برنامج بحيث ترفع السير الذاتية ثم تفلتر المهم منها للتقديم وتصدر الملف بصيغة PDF"
+        },
+        "en": {
+            "name": "CV Maker",
+            "description": "Select your top elements in the CV based on your application then export it to PDF"
+        },
+        "status": "finished",
+        "links": {
+            "github": "Muaath5/cv_studio",
+            "url": "https://cv.muaath.dev/"
+        }
+    },
+    {
+        "start_date": "2026-07-08",
         "ar": {
             "name": "معرض الخطوط العربية",
             "description": "نخبة الخطوط العربية بصيغة سهلة الاستخدام بصيغ TTF/OTF/WOFF2"
@@ -16,7 +32,7 @@
         }
     },
     {
-        "start_date": "2026/07/05",
+        "start_date": "2026-07-05",
         "ar": {
             "name": "محلل رسائل البنوك",
             "description": "أداة تقنية مالية شخصية تحلل رسائل SMS من البنوك بصيغة JSON/CSV للدخل والمصروفات"
@@ -31,7 +47,7 @@
         }
     },
     {
-        "start_date": "2026/02/03",
+        "start_date": "2026-02-03",
         "ar": {
             "name": "أوقات الصلاة في البترول",
             "description": "موقع بسيط يحسب أوقات الصلاة في جامعة الملك فهد للبترول والمعادن بتصميم وألوان تطابق الهوية البصرية للجامعة"
@@ -47,7 +63,7 @@
         }
     },
     {
-        "start_date": "2025/04/24",
+        "start_date": "2025-04-24",
         "ar": {
             "name": "Deobfuscate CodeHashifier",
             "description": "موقع مفتوح المصدر يفك تشويش برامج C++ المشوشة بأحد البرامج"
@@ -63,7 +79,7 @@
         }
     },
     {
-        "start_date": "2024/04/12",
+        "start_date": "2024-04-12",
         "ar": {
             "name": "السمبوسات المتساقطة",
             "description": "لعبة على المتصفح مبنية على أحد المسائل"
@@ -79,7 +95,7 @@
         }
     },
     {
-        "start_date": "2022/12/23",
+        "start_date": "2022-12-23",
         "ar": {
             "name": "منصة التحكيم السعودية - SOJ",
             "description": "أول منصة عربية وسعودية لتحكيم وتشغيل الأكواد وكتابة المسائل"
@@ -96,7 +112,7 @@
         }
     },
     {
-        "start_date": "2021/07/24",
+        "start_date": "2021-07-24",
         "ar": {
             "name": "Simple Bot API",
             "description": "مكتبة PHP سهلة ومتوافقة مع جميع إصدارات Bot API للتيليجرام"
@@ -111,7 +127,7 @@
         }
     },
     {
-        "start_date": "2021/10/04",
+        "start_date": "2021-10-04",
         "ar": {
             "name": "TDLibBinaries",
             "description": "ملفات مكتبة TDLib مع سكربتات للـcompilation"
