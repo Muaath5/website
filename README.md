@@ -1,5 +1,7 @@
 # Personal website
 
+Built using [MuStatic](https://muaath.dev/blog/mustatic).
+
 Check [my portfolio](https://muaath.dev/).
 
 Also [my blog](https://muaath.dev/blog).
